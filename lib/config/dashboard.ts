@@ -16,10 +16,11 @@ const OrgNavTabs: DashboardNavItem[] = [
   },
   {
     module: "org",
-    slug: "org-stadistics",
+    // slug is composed of module + href
+    slug: "org-analytics",
     title: "Statistics",
-    href: "/stadistics",
-    disabled: true,
+    href: "/analytics",
+    disabled: false,
   },
   {
     module: "org",

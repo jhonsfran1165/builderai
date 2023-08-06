@@ -4,6 +4,7 @@
     "allowJs": true,
     "skipLibCheck": true,
     "strict": false,
+    "removeComments": true,
     "forceConsistentCasingInFileNames": true,
     "noEmit": true,
     "incremental": true,

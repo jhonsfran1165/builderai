@@ -1,5 +1,6 @@
 const { fontFamily } = require("tailwindcss/defaultTheme")
 const { toRadixVar } = require("windy-radix-palette/vars")
+const colors = require("tailwindcss/colors")
 
 const generateRadixColors = (color) => {
   return {
@@ -27,7 +28,11 @@ module.exports = {
   // mode: "jit", // mode just in time
   darkMode: ["class", '[data-theme="dark"]'],
   // prefix: 'builderai-', // activate to use prefixes here
-  content: ["app/**/*.{ts,tsx}", "components/**/*.{ts,tsx}"],
+  content: [
+    "app/**/*.{ts,tsx}",
+    "components/**/*.{ts,tsx}",
+    "./node_modules/@tremor/**/*.{js,ts,jsx,tsx}",
+  ],
   // disble hover on mobiles
   future: {
     hoverOnlyWhenSupported: true,
@@ -41,6 +46,67 @@ module.exports = {
       "2xl": "1536px", // extra large screens
     },
     colors: {
+      ...colors,
+      // light mode
+      tremor: {
+        brand: {
+          faint: toRadixVar("amber", 3), // blue-50
+          muted: toRadixVar("gray", 7), // blue-200
+          subtle: toRadixVar("amber", 2), // blue-400
+          DEFAULT: toRadixVar("amber", 9), // blue-500
+          emphasis: toRadixVar("amber", 10), // blue-700
+          inverted: toRadixVar("amber", 12), // white
+        },
+        background: {
+          muted: toRadixVar("gray", 7), // gray-50
+          subtle: toRadixVar("sand", 2), // gray-100
+          DEFAULT: toRadixVar("sand", 1), // white
+          emphasis: toRadixVar("sand", 10), // gray-700
+        },
+        border: {
+          DEFAULT: toRadixVar("sand", 7), // gray-200
+        },
+        ring: {
+          DEFAULT: toRadixVar("sand", 7), // gray-200
+        },
+        content: {
+          subtle: toRadixVar("sand", 2), // gray-400
+          DEFAULT: toRadixVar("sand", 11), // gray-500
+          emphasis: toRadixVar("sand", 12), // gray-700
+          strong: toRadixVar("sand", 9), // gray-900
+          inverted: toRadixVar("sand", 12), // white
+        },
+      },
+      // dark mode
+      "dark-tremor": {
+        brand: {
+          faint: toRadixVar("amber", 3), // blue-50
+          muted: toRadixVar("gray", 7), // blue-200
+          subtle: toRadixVar("amber", 2), // blue-400
+          DEFAULT: toRadixVar("amber", 9), // blue-500
+          emphasis: toRadixVar("amber", 10), // blue-700
+          inverted: toRadixVar("amber", 12), // white
+        },
+        background: {
+          muted: toRadixVar("sand", 12), // gray-50
+          subtle: toRadixVar("sand", 2), // gray-100
+          DEFAULT: toRadixVar("sand", 3), // white
+          emphasis: toRadixVar("sand", 10), // gray-700
+        },
+        border: {
+          DEFAULT: toRadixVar("sand", 7), // gray-200
+        },
+        ring: {
+          DEFAULT: toRadixVar("sand", 7), // gray-200
+        },
+        content: {
+          subtle: toRadixVar("sand", 2), // gray-400
+          DEFAULT: toRadixVar("sand", 11), // gray-500
+          emphasis: toRadixVar("sand", 12), // gray-700
+          strong: toRadixVar("sand", 9), // gray-900
+          inverted: toRadixVar("sand", 12), // white
+        },
+      },
       gray: generateRadixColors("gray"),
       success: generateRadixColors("green"),
       danger: generateRadixColors("red"),
@@ -143,11 +209,67 @@ module.exports = {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
       },
+      boxShadow: {
+        // light
+        "tremor-input": "0 1px 2px 0 rgb(0 0 0 / 0.05)",
+        "tremor-card":
+          "0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1)",
+        "tremor-dropdown":
+          "0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)",
+        // dark
+        "dark-tremor-input": "0 1px 2px 0 rgb(0 0 0 / 0.05)",
+        "dark-tremor-card":
+          "0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1)",
+        "dark-tremor-dropdown":
+          "0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)",
+      },
+      borderRadius: {
+        "tremor-small": "0.375rem",
+        "tremor-default": "0.5rem",
+        "tremor-full": "9999px",
+      },
+      fontSize: {
+        "tremor-label": ["0.75rem"],
+        "tremor-default": ["0.875rem", { lineHeight: "1.25rem" }],
+        "tremor-title": ["1.125rem", { lineHeight: "1.75rem" }],
+        "tremor-metric": ["1.875rem", { lineHeight: "2.25rem" }],
+      },
     },
   },
+
+  safelist: [
+    {
+      pattern:
+        /^(bg-(?:slate|gray|zinc|neutral|stone|red|orange|amber|yellow|lime|green|emerald|teal|cyan|sky|blue|indigo|violet|purple|fuchsia|pink|rose)-(?:50|100|200|300|400|500|600|700|800|900|950))$/,
+      variants: ["hover", "ui-selected"],
+    },
+    {
+      pattern:
+        /^(text-(?:slate|gray|zinc|neutral|stone|red|orange|amber|yellow|lime|green|emerald|teal|cyan|sky|blue|indigo|violet|purple|fuchsia|pink|rose)-(?:50|100|200|300|400|500|600|700|800|900|950))$/,
+      variants: ["hover", "ui-selected"],
+    },
+    {
+      pattern:
+        /^(border-(?:slate|gray|zinc|neutral|stone|red|orange|amber|yellow|lime|green|emerald|teal|cyan|sky|blue|indigo|violet|purple|fuchsia|pink|rose)-(?:50|100|200|300|400|500|600|700|800|900|950))$/,
+      variants: ["hover", "ui-selected"],
+    },
+    {
+      pattern:
+        /^(ring-(?:slate|gray|zinc|neutral|stone|red|orange|amber|yellow|lime|green|emerald|teal|cyan|sky|blue|indigo|violet|purple|fuchsia|pink|rose)-(?:50|100|200|300|400|500|600|700|800|900|950))$/,
+    },
+    {
+      pattern:
+        /^(stroke-(?:slate|gray|zinc|neutral|stone|red|orange|amber|yellow|lime|green|emerald|teal|cyan|sky|blue|indigo|violet|purple|fuchsia|pink|rose)-(?:50|100|200|300|400|500|600|700|800|900|950))$/,
+    },
+    {
+      pattern:
+        /^(fill-(?:slate|gray|zinc|neutral|stone|red|orange|amber|yellow|lime|green|emerald|teal|cyan|sky|blue|indigo|violet|purple|fuchsia|pink|rose)-(?:50|100|200|300|400|500|600|700|800|900|950))$/,
+    },
+  ],
   // https://www.youtube.com/watch?v=GEYkwfYytAM&ab_channel=TailwindLabs
   // tpyography is necessary later when we use contentlayer
   plugins: [
+    require("@headlessui/tailwindcss"),
     require("tailwindcss-animate"),
     require("windy-radix-palette"),
     require("@tailwindcss/typography"),

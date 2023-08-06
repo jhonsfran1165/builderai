@@ -1,13 +1,13 @@
 import { NextApiRequest, NextApiResponse } from "next"
 
 import { withMethods } from "@/lib/api-middlewares"
-import { getPageHits } from "@/lib/tinybird"
+import { getPageHits, getPageVisits } from "@/lib/tinybird"
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {
   try {
     // TODO: testing pipedata
     if (req.method === "GET") {
-      const data = await getPageHits({})
+      const data = await getPageVisits({})
       return res.status(200).json(data)
     }
   } catch (error) {

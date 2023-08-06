@@ -2,6 +2,9 @@
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
+  experimental: {
+    serverComponentsExternalPackages: ["@tremor/react"],
+  },
   images: {
     domains: [
       "www.google.com",

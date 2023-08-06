@@ -30,6 +30,12 @@
     @apply font-inter bg-background-base text-background-text;
     font-feature-settings: "rlig" 1, "calt" 1;
   }
+
+  :root {
+    --ring: 215 20.2% 65.1%;
+
+    --radius: 0.5rem;
+  }
 }
 
 /* alias classes to override ui */

@@ -2,6 +2,17 @@ import { z } from "zod"
 
 import { tb } from "@/lib/tinybird"
 
+export const getPageVisits = tb.buildPipe({
+  pipe: "visits_test",
+  parameters: z.object({}),
+  data: z.object({
+    visits: z.number(),
+  }),
+  // opts: {
+  //   revalidate: 60, // 60 seconds cache validation
+  // },
+})
+
 export const getPageHits = tb.buildPipe({
   pipe: "page_hits_test",
   parameters: z.object({}),
