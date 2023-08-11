@@ -4,6 +4,10 @@
 
 /* follow this rules */
 /* https://www.radix-ui.com/docs/colors/palette-composition/understanding-the-scale */
+/*
+  I love shadcn's ui, but I want to change the colors, also a bad thing of using the same library everyone uses is all apps
+  start to look the same at least with these tweaks I can make it look a little bit different :)
+*/
 @layer base {
   * {
     @apply border-border;
@@ -32,7 +36,7 @@
   }
 }
 
-/* alias classes to override ui */
+/* alias classes to override shadcn ui */
 @layer utilities {
   .primary {
     @apply border border-primary-border bg-primary-bg text-primary-text;

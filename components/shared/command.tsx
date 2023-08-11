@@ -1,14 +1,14 @@
 "use client"
 
-import * as React from "react"
 import {
   Calculator,
   Calendar,
   CreditCard,
   Settings,
   Smile,
-  User,
+  User
 } from "lucide-react"
+import * as React from "react"
 
 import { Button } from "@/components/ui/button"
 import {
@@ -19,12 +19,16 @@ import {
   CommandItem,
   CommandList,
   CommandSeparator,
-  CommandShortcut,
+  CommandShortcut
 } from "@/components/ui/command"
 
 export function CommandDialogLayout() {
   const [open, setOpen] = React.useState(false)
 
+  // TODO: use the same principle to handle JWT refresh token
+  // https://dev.to/akumzy/managing-global-dom-events-in-react-with-hooks-3ckl
+  // https://www.falldowngoboone.com/blog/talk-to-your-react-components-with-custom-events/
+  // https://blog.logrocket.com/using-custom-events-react/
   React.useEffect(() => {
     const down = (e: KeyboardEvent) => {
       if (e.key === "k" && e.metaKey) {
@@ -41,12 +45,12 @@ export function CommandDialogLayout() {
       <Button
         size="sm"
         variant="outline"
-        className="relative h-8 w-full justify-start rounded-[0.5rem] px-3 text-sm text-muted-foreground sm:pr-12 md:w-40 lg:w-64"
+        className="text-muted-foreground relative h-8 w-full justify-start rounded-[0.5rem] px-3 text-sm sm:pr-12 md:w-40 lg:w-64"
         onClick={() => setOpen(true)}
       >
         <span className="hidden lg:inline-flex">Search...</span>
         <span className="inline-flex lg:hidden">Search...</span>
-        <kbd className="top-1.3 pointer-events-none absolute right-1.5 hidden h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium opacity-100 sm:flex">
+        <kbd className="top-1.3 bg-muted pointer-events-none absolute right-1.5 hidden h-5 select-none items-center gap-1 rounded border px-1.5 font-mono text-[10px] font-medium opacity-100 sm:flex">
           <span className="text-xs">⌘</span>K
         </kbd>
       </Button>

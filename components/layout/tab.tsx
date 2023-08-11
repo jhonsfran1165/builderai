@@ -1,6 +1,6 @@
+import { WrapperLink } from "@/components/shared/wrapper-link"
 import type { DashboardNavItem } from "@/lib/types/index"
 import { cn } from "@/lib/utils"
-import { WrapperLink } from "@/components/shared/wrapper-link"
 
 export const Tab = ({
   tab,
@@ -21,7 +21,7 @@ export const Tab = ({
   return (
     <WrapperLink
       href={tab?.disabled ? "#" : tabPath}
-      className={cn("-mb-1 border-b-2 p-1", {
+      className={cn("border-b-2 p-1", {
         "border-primary-solid": active,
         "border-transparent": !active,
         "cursor-not-allowed opacity-80 text-backgroud": tab.disabled,
@@ -29,7 +29,7 @@ export const Tab = ({
     >
       <div className="button-ghost rounded-md px-3 py-2 transition-all duration-75">
         <p
-          className={cn("text-sm hover:text-background-textContrast", {
+          className={cn("hover:text-background-textContrast text-sm", {
             "text-background-textContrast": active,
           })}
         >

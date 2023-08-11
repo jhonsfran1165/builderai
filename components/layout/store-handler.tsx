@@ -1,23 +1,24 @@
 "use client"
 
-import { useEffect, useMemo, useRef } from "react"
 import {
   usePathname,
   useRouter,
-  useSelectedLayoutSegments,
+  useSelectedLayoutSegments
 } from "next/navigation"
+import { useEffect, useMemo, useRef } from "react"
 import { mutate } from "swr"
 
+import { useSupabase } from "@/components/auth/supabase-provider"
+import { toast } from "@/components/ui/use-toast"
 import { getActiveTabs } from "@/lib/config/dashboard"
 import { useTrackPage } from "@/lib/hooks/use-track-page"
 import { useStore } from "@/lib/stores/layout"
 import useProject from "@/lib/swr/use-project"
 import { AppClaims, AppModulesNav } from "@/lib/types"
 import { Session } from "@/lib/types/supabase"
-import { toast } from "@/components/ui/use-toast"
-import { useSupabase } from "@/components/auth/supabase-provider"
 
 // TODO: separation of concerns for this and clean
+// TODO: implement legend state
 function StoreHandler({
   session,
   modulesApp,

@@ -30,7 +30,7 @@ async function handler(
           image,
           description,
         })
-        .eq("id", id)
+        .match({ id }) // match by id
         .select()
         .single()
 

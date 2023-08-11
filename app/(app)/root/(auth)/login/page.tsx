@@ -1,12 +1,20 @@
 import { Metadata } from "next"
 
-import AuthenticationContainer from "@/components/auth/auth-container"
+import { AuthenticationContainer } from "@/components/auth/auth-container"
+import { LoginForm } from "@/components/auth/login-form"
 
 export const metadata: Metadata = {
-  title: "Authentication",
-  description: "Authentication forms built using the components.",
+  title: "Login | builderAI",
+  description: "Login page for builderAI.",
 }
 
 export default function LoginPage() {
-  return <AuthenticationContainer action="login" />
+  return (
+    <AuthenticationContainer
+      linkUrl={"/register"}
+      linkText={"register"}
+    >
+      <LoginForm />
+    </AuthenticationContainer>
+  )
 }

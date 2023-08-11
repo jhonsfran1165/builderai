@@ -1,22 +1,22 @@
 import Link from "next/link"
 
-import { layoutConfig } from "@/lib/config/layout"
-import { cn } from "@/lib/utils"
-import { Separator } from "@/components/ui/separator"
 import { AccountToggle } from "@/components/accounts/account-toggle"
 import { Logo } from "@/components/layout/logo"
 import { OrganizationSwitch } from "@/components/organizations/organization-switch"
 import ProjectContext from "@/components/projects/project-context"
 import { CommandDialogLayout } from "@/components/shared/command"
+import { Separator } from "@/components/ui/separator"
+import { layoutConfig } from "@/lib/config/layout"
+import { cn } from "@/lib/utils"
 
 export function MainNav() {
   return (
-    <div className="flex h-16 items-center space-x-2 bg-background-bgSubtle sm:justify-between sm:space-x-0">
+    <div className="bg-background-bgSubtle flex h-16 items-center space-x-2 sm:justify-between sm:space-x-0">
       <div className="flex items-center justify-start">
         <Logo />
         <Separator
           orientation="vertical"
-          className="ml-6 mr-5 hidden h-6 rotate-[30deg] gap-0 text-background-textContrast md:inline-block"
+          className="text-background-textContrast ml-6 mr-5 hidden h-6 rotate-[30deg] gap-0 md:inline-block"
         />
         <OrganizationSwitch />
         <ProjectContext />
@@ -30,7 +30,7 @@ export function MainNav() {
                   (item, index) =>
                     item.href && (
                       <Link
-                        key={item.href}
+                        key={item.href + index}
                         href={item.href}
                         className={cn(
                           "button-ghost flex items-center rounded-md border px-2 py-1 text-xs font-normal",

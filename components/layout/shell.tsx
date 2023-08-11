@@ -1,19 +1,17 @@
 "use client"
 
-import { ReactNode } from "react"
 import { usePathname } from "next/navigation"
+import { ReactNode } from "react"
 
-import { useStore } from "@/lib/stores/layout"
-import { ScrollArea } from "@/components/ui/scroll-area"
 import { DashboardSideBarNav } from "@/components/layout/sidebar-nav"
 import MaxWidthWrapper from "@/components/shared/max-width-wrapper"
+import { ScrollArea } from "@/components/ui/scroll-area"
+import { useStore } from "@/lib/stores/layout"
 
 export function DashboardShell({
   children,
-  isLoading,
 }: {
   children?: ReactNode
-  isLoading?: boolean
 }) {
   const { activeTab, activePathPrefix } = useStore()
   const pathName = usePathname()

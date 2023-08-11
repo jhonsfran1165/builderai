@@ -1,35 +1,28 @@
 "use client"
 
-import { useState } from "react"
-import { useRouter } from "next/navigation"
 import { zodResolver } from "@hookform/resolvers/zod"
+import { useRouter } from "next/navigation"
+import { useState } from "react"
 import { SubmitHandler, useForm } from "react-hook-form"
 
-import { cn } from "@/lib/utils"
-import {
-  authRegisterValidationSchema,
-  type authRegisterValidationType,
-} from "@/lib/validations/auth"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { toast } from "@/components/ui/use-toast"
 import { useSupabase } from "@/components/auth/supabase-provider"
 import { Icons } from "@/components/shared/icons"
+import { Button } from "@/components/ui/button"
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
+import { Input } from "@/components/ui/input"
+import { toast } from "@/components/ui/use-toast"
+import {
+  authRegisterValidationSchema,
+  type authRegisterValidationType
+} from "@/lib/validations/auth"
 
-interface RegisterFormProps extends React.HTMLAttributes<HTMLDivElement> {}
 
-export function RegisterForm({ className, ...props }: RegisterFormProps) {
+export function RegisterForm() {
   const [isLoading, setIsLoading] = useState<boolean>(false)
-
   const router = useRouter()
   const { supabase } = useSupabase()
 
-  const {
-    register,
-    formState: { errors },
-    handleSubmit,
-  } = useForm<authRegisterValidationType>({
+  const form = useForm<authRegisterValidationType>({
     resolver: zodResolver(authRegisterValidationSchema),
     defaultValues: {
       email: "",
@@ -49,6 +42,8 @@ export function RegisterForm({ className, ...props }: RegisterFormProps) {
       })
 
       if (error) throw error
+
+      // TODO: implement onboarding flow
       router.push("/org?action=welcome")
     } catch (error) {
       toast({
@@ -62,78 +57,88 @@ export function RegisterForm({ className, ...props }: RegisterFormProps) {
   }
 
   return (
-    <div className={cn("grid gap-6", className)} {...props}>
-      <form id="register-form" onSubmit={handleSubmit(onSubmit)}>
-        <div className="grid gap-2">
-          <div className="grid gap-1">
-            <Label className="sr-only" htmlFor="email">
-              Email
-            </Label>
-            <Input
-              {...register("email")}
-              id="email"
-              placeholder="name@example.com"
-              type="email"
-              autoCapitalize="none"
-              autoComplete="email"
-              autoCorrect="off"
-              disabled={isLoading}
-              aria-invalid={errors.email ? "true" : "false"}
-            />
-            {errors.email && (
-              <p className="pl-1 pt-1 text-xs text-error-solid" role="alert">
-                {errors.email?.message}
-              </p>
-            )}
-          </div>
-          <div className="grid gap-1">
-            <Label className="sr-only" htmlFor="password">
-              Password
-            </Label>
-            <Input
-              {...register("password")}
-              id="password"
-              placeholder="password"
-              type="password"
-              disabled={isLoading}
-              aria-invalid={errors.password ? "true" : "false"}
-            />
-            {errors.password && (
-              <p className="pl-1 pt-1 text-xs text-error-solid" role="alert">
-                {errors.password?.message}
-              </p>
-            )}
-          </div>
-          <div className="grid gap-1">
-            <Label className="sr-only" htmlFor="password">
-              Confirm assword
-            </Label>
-            <Input
-              {...register("confirmPassword")}
-              id="confirmPassword"
-              placeholder="confirmPassword"
-              type="password"
-              disabled={isLoading}
-              aria-invalid={errors.password ? "true" : "false"}
-            />
-            {errors.confirmPassword && (
-              <p className="pl-1 pt-1 text-xs text-error-solid" role="alert">
-                {errors.confirmPassword?.message}
-              </p>
-            )}
-          </div>
-          <Button
-            disabled={isLoading}
-            form="register-form"
-            type="submit"
-            className="font-semibold text-black"
-          >
-            {isLoading && (
-              <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
-            )}
-            Sign Up with Email
-          </Button>
-        </div>
+    <Form {...form}>
+      <div className="flex flex-col space-y-2 text-center">
+        <h1 className="text-2xl font-semibold tracking-tight">
+          Sign up to your account
+        </h1>
+        <p className="text-muted-foreground text-sm">
+          Enter your email below
+        </p>
+      </div>
+      <form
+        id="register-form"
+        onSubmit={form.handleSubmit(onSubmit)}
+        className="flex flex-col space-y-6"
+      >
+        <FormField
+          control={form.control}
+          name="email"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>EMAIL</FormLabel>
+
+              <FormControl>
+                <Input
+                  placeholder="name@example.com"
+                  {...field}
+
+                />
+              </FormControl>
+
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        <FormField
+          control={form.control}
+          name="password"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>PASSWORD</FormLabel>
+
+              <FormControl>
+                <Input
+                  {...field}
+
+                />
+              </FormControl>
+
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="confirmPassword"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>PASSWORD</FormLabel>
+
+              <FormControl>
+                <Input
+                  {...field}
+
+                />
+              </FormControl>
+
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <Button
+          disabled={isLoading}
+          form="register-form"
+          type="submit"
+          variant={"default"}
+          className="text-primary-foreground font-semibold"
+        >
+          {isLoading && (
+            <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
+          )}
+          Sign Up with Email
+        </Button>
       </form>
 
       <div className="relative">
@@ -141,7 +146,7 @@ export function RegisterForm({ className, ...props }: RegisterFormProps) {
           <span className="w-full border-t" />
         </div>
         <div className="relative flex justify-center text-xs uppercase">
-          <span className="bg-background-base px-2 text-muted-foreground">
+          <span className="bg-background-base text-muted-foreground px-2">
             Or continue with
           </span>
         </div>
@@ -151,6 +156,12 @@ export function RegisterForm({ className, ...props }: RegisterFormProps) {
         type="button"
         className="button-ghost"
         disabled={isLoading}
+        onClick={async () => {
+          setIsLoading(true)
+          await supabase.auth.signInWithOAuth({
+            provider: "github",
+          })
+        }}
       >
         {isLoading ? (
           <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
@@ -159,6 +170,7 @@ export function RegisterForm({ className, ...props }: RegisterFormProps) {
         )}{" "}
         Github
       </Button>
-    </div>
+
+    </Form >
   )
 }

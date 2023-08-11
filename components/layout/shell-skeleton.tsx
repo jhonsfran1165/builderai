@@ -8,7 +8,7 @@ export function ShellSkeleton() {
         <CardTitle className="mb-4 flex text-xl">
           <Skeleton className="h-[30px] w-[200px]" />
         </CardTitle>
-        <div className="space-y-1 text-sm text-muted-foreground">
+        <div className="text-muted-foreground space-y-1 text-sm">
           <Skeleton className="h-[18px] w-full" />
           <Skeleton className="h-[18px] w-full" />
         </div>

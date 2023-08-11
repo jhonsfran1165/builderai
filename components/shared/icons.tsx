@@ -7,9 +7,7 @@ import {
   ChevronRight,
   ChevronsUpDown,
   Cloud,
-  Cog,
-  Command,
-  CreditCard,
+  Cog, CreditCard,
   ExternalLink,
   File,
   FileText,
@@ -41,7 +39,7 @@ import {
   Users,
   X,
   XCircle,
-  type Icon as LucideIcon,
+  type Icon as LucideIcon
 } from "lucide-react"
 
 export type Icon = LucideIcon

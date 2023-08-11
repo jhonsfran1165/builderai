@@ -1,26 +1,5 @@
 const { fontFamily } = require("tailwindcss/defaultTheme")
-const { toRadixVar } = require("windy-radix-palette/vars")
-
-const generateRadixColors = (color) => {
-  return {
-    DEFAULT: toRadixVar(color, 9),
-    foreground: toRadixVar(color, 12),
-    base: toRadixVar(color, 1),
-    bgSubtle: toRadixVar(color, 2),
-    bg: toRadixVar(color, 3),
-    bgHover: toRadixVar(color, 4),
-    bgActive: toRadixVar(color, 5),
-    line: toRadixVar(color, 6),
-    border: toRadixVar(color, 7),
-    borderHover: toRadixVar(color, 8),
-    solid: toRadixVar(color, 9),
-    solidHover: toRadixVar(color, 10),
-    text: toRadixVar(color, 11),
-    textContrast: toRadixVar(color, 12),
-  }
-}
-
-// https://tailwindcss.com/docs/theme#configuration-reference
+const { generateTheme } = require("./lib/utils/generate-theme")
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
@@ -41,61 +20,8 @@ module.exports = {
       "2xl": "1536px", // extra large screens
     },
     colors: {
-      gray: generateRadixColors("gray"),
-      success: generateRadixColors("green"),
-      danger: generateRadixColors("red"),
-      warning: generateRadixColors("yellow"),
-      info: generateRadixColors("blue"),
-      error: generateRadixColors("red"),
-      background: {
-        ...generateRadixColors("sand"),
-        DEFAULT: toRadixVar("sand", 2),
-      },
-      primary: generateRadixColors("amber"),
-      secondary: generateRadixColors("crimson"),
-      border: toRadixVar("sand", 7),
-      input: toRadixVar("sand", 6),
-      ring: toRadixVar("sand", 8),
-      // background: toRadixVar("sand", 1),
-      foreground: toRadixVar("sand", 11),
-      destructive: {
-        DEFAULT: toRadixVar("red", 9),
-        foreground: toRadixVar("red", 3),
-      },
-      muted: {
-        DEFAULT: toRadixVar("gray", 7),
-        foreground: toRadixVar("gray", 11),
-      },
-      accent: {
-        DEFAULT: toRadixVar("sand", 4),
-        foreground: toRadixVar("sand", 12),
-      },
-      popover: {
-        DEFAULT: toRadixVar("sand", 2),
-        foreground: toRadixVar("sand", 11),
-      },
-      card: {
-        DEFAULT: toRadixVar("sand", 2),
-        foreground: toRadixVar("sand", 11),
-      },
-      transparent: "transparent",
-      current: "currentColor",
-      black: "#000",
-      white: "#fff",
+      ...generateTheme("sunset"),
     },
-    // borderColor: (theme) => ({
-    //   ...theme("colors"),
-    //   DEFAULT: toRadixVar("sand", 7),
-    // }),
-    // // Modify the default ring color so that it matches the brand color:
-    // ringColor: (theme) => ({
-    //   ...theme("colors"),
-    //   DEFAULT: toRadixVar("sand", 9),
-    // }),
-    // ringOffsetColor: (theme) => ({
-    //   ...theme("colors"),
-    //   DEFAULT: toRadixVar("sand", 9),
-    // }),
     fontSize: {
       xs: ".75rem",
       sm: ".875rem",

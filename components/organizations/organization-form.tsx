@@ -1,17 +1,13 @@
 "use client"
 
-import { useEffect, useState } from "react"
-import { useRouter } from "next/navigation"
 import { zodResolver } from "@hookform/resolvers/zod"
+import { useRouter } from "next/navigation"
+import { useEffect, useState } from "react"
 import { SubmitHandler, useForm } from "react-hook-form"
 import { mutate } from "swr"
 
-import { trackEvent } from "@/lib/analytics/track-event"
-import { ORGANIZATION_TYPES } from "@/lib/config/layout"
-import { Organization } from "@/lib/types/supabase"
-import { createSlug, fetchAPI } from "@/lib/utils"
-import { orgPostSchema, orgPostType } from "@/lib/validations/org"
-import useOrganizationExist from "@/hooks/use-organization-exist"
+import { useSupabase } from "@/components/auth/supabase-provider"
+import { Icons } from "@/components/shared/icons"
 import { Avatar, AvatarImage } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
 import {
@@ -20,7 +16,7 @@ import {
   CardDescription,
   CardFooter,
   CardHeader,
-  CardTitle,
+  CardTitle
 } from "@/components/ui/card"
 import {
   Form,
@@ -28,7 +24,7 @@ import {
   FormField,
   FormItem,
   FormLabel,
-  FormMessage,
+  FormMessage
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import {
@@ -36,17 +32,21 @@ import {
   SelectContent,
   SelectItem,
   SelectTrigger,
-  SelectValue,
+  SelectValue
 } from "@/components/ui/select"
 import { Separator } from "@/components/ui/separator"
 import { Textarea } from "@/components/ui/textarea"
 import { toast } from "@/components/ui/use-toast"
-import { useSupabase } from "@/components/auth/supabase-provider"
-import { Icons } from "@/components/shared/icons"
+import useOrganizationExist from "@/hooks/use-organization-exist"
+import { trackEvent } from "@/lib/analytics/track-event"
+import { ORGANIZATION_TYPES } from "@/lib/config/layout"
+import { Organization } from "@/lib/types/supabase"
+import { createSlug, fetchAPI } from "@/lib/utils"
+import { orgPostSchema, orgPostType } from "@/lib/validations/org"
 
 import "./styles.css"
 
-export function OrganizationForm({ org }: { org?: Organization | null }) {
+export function OrganizationForm({ org }: { org?: Organization }) {
   const router = useRouter()
   const { supabase } = useSupabase()
 

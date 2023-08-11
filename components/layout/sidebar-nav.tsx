@@ -1,7 +1,7 @@
-import { DashboardSidebarNavItem } from "@/lib/types"
-import { cn } from "@/lib/utils"
 import { Icons } from "@/components/shared/icons"
 import { WrapperLink } from "@/components/shared/wrapper-link"
+import { DashboardSidebarNavItem } from "@/lib/types"
+import { cn } from "@/lib/utils"
 
 export function DashboardSideBarNav({
   items,
@@ -25,7 +25,7 @@ export function DashboardSideBarNav({
         return (
           <WrapperLink
             className={""}
-            key={item.slug}
+            key={item.slug + index}
             href={item.disabled ? "#" : pathPrefix + item.href}
           >
             <div
@@ -37,7 +37,7 @@ export function DashboardSideBarNav({
                 }
               )}
             >
-              <Icon className="mr-2 h-4 w-4 text-primary-solid" />
+              <Icon className="text-primary-solid mr-2 h-4 w-4" />
               <span
                 className={cn({
                   "text-background-textContrast": active,
