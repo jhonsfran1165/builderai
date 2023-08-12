@@ -1,8 +1,6 @@
+import { ChevronDown, CreditCard, ExternalLink, File, PlusCircle, Settings } from "lucide-react"
 import Link from "next/link"
-import { ChevronDown } from "lucide-react"
 
-import { DataProjectsView } from "@/lib/types/supabase"
-import { getDateTimeLocal, getFirstAndLastDay } from "@/lib/utils"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
@@ -11,7 +9,7 @@ import {
   CardContent,
   CardDescription,
   CardHeader,
-  CardTitle,
+  CardTitle
 } from "@/components/ui/card"
 import {
   DropdownMenu,
@@ -19,10 +17,11 @@ import {
   DropdownMenuContent,
   DropdownMenuLabel,
   DropdownMenuSeparator,
-  DropdownMenuTrigger,
+  DropdownMenuTrigger
 } from "@/components/ui/dropdown-menu"
 import { Separator } from "@/components/ui/separator"
-import { Icons } from "@/components/shared/icons"
+import { DataProjectsView } from "@/lib/types/supabase"
+import { getDateTimeLocal, getFirstAndLastDay } from "@/lib/utils"
 
 export function BillingProjects({
   projects,
@@ -69,10 +68,9 @@ export function BillingProjects({
               <div className="flex w-full items-center space-x-4">
                 <Avatar>
                   <AvatarImage
-                    src={`${
-                      project?.project_logo ||
+                    src={`${project?.project_logo ||
                       "https://avatar.vercel.sh/account.png"
-                    }`}
+                      }`}
                   />
                   <AvatarFallback>OM</AvatarFallback>
                 </Avatar>
@@ -98,7 +96,7 @@ export function BillingProjects({
                       variant={"ghost"}
                       className="px-2  hover:bg-background-bgSubtle"
                     >
-                      <Icons.externalLink className="h-4 w-4" />
+                      <ExternalLink className="h-4 w-4" />
                     </Button>
                   </Link>
                   <Separator orientation="vertical" className="h-[20px]" />
@@ -119,7 +117,7 @@ export function BillingProjects({
                           className="flex"
                           href={`/org/${project.org_slug}/project/${project.project_slug}/settings/billing`}
                         >
-                          <Icons.billing className="mr-2 h-5 w-5" />
+                          <CreditCard className="mr-2 h-5 w-5" />
                           Billings
                         </Link>
                       </DropdownMenuCheckboxItem>
@@ -128,7 +126,7 @@ export function BillingProjects({
                           className="flex"
                           href={`/org/${project.org_slug}/project/${project.project_slug}/settings/billing`}
                         >
-                          <Icons.plusCircle className="mr-2 h-5 w-5" />
+                          <PlusCircle className="mr-2 h-5 w-5" />
                           Usage
                         </Link>
                       </DropdownMenuCheckboxItem>
@@ -137,7 +135,7 @@ export function BillingProjects({
                           className="flex"
                           href={`/org/${project.org_slug}/project/${project.project_slug}/settings`}
                         >
-                          <Icons.settings className="mr-2 h-5 w-5" />
+                          <Settings className="mr-2 h-5 w-5" />
                           Settings
                         </Link>
                       </DropdownMenuCheckboxItem>
@@ -146,7 +144,7 @@ export function BillingProjects({
                           className="flex"
                           href={`/org/${project.org_slug}/project/${project.project_slug}/settings/plans`}
                         >
-                          <Icons.page className="mr-2 h-5 w-5" />
+                          <File className="mr-2 h-5 w-5" />
                           Upgrade
                         </Link>
                       </DropdownMenuCheckboxItem>

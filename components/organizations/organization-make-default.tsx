@@ -1,30 +1,30 @@
 "use client"
 
-import { useRouter } from "next/navigation"
 import { zodResolver } from "@hookform/resolvers/zod"
+import { useRouter } from "next/navigation"
 import { SubmitHandler, useForm } from "react-hook-form"
 import { mutate } from "swr"
 
-import { fetchAPI } from "@/lib/utils"
-import {
-  orgMakeDefaultSchema,
-  type orgMakeDefaultType,
-} from "@/lib/validations/org"
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
-  CardTitle,
+  CardTitle
 } from "@/components/ui/card"
 import {
   HoverCard,
   HoverCardContent,
-  HoverCardTrigger,
+  HoverCardTrigger
 } from "@/components/ui/hover-card"
 import { Switch } from "@/components/ui/switch"
 import { toast } from "@/components/ui/use-toast"
-import { Icons } from "@/components/shared/icons"
+import { fetchAPI } from "@/lib/utils"
+import {
+  orgMakeDefaultSchema,
+  type orgMakeDefaultType
+} from "@/lib/validations/org"
+import { HelpCircle } from "lucide-react"
 
 export function OrganizationMakeDefault({
   orgSlug,
@@ -96,7 +96,7 @@ export function OrganizationMakeDefault({
           <HoverCard>
             <HoverCardTrigger asChild>
               <div className="flex w-full items-center space-x-4 rounded-md border p-4">
-                <Icons.help />
+                <HelpCircle />
                 <div className="flex-1 space-y-1">
                   <p className="text-sm font-medium leading-none">
                     Enable as default

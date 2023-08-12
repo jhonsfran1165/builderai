@@ -4,11 +4,11 @@ import { cn } from "@/lib/utils"
 
 export function Logo({ className = "" }) {
   return (
-    <div className="text-primary-text hidden items-center justify-center space-x-2 md:flex">
+    <div className="hidden items-center justify-center space-x-2 text-primary-text md:flex">
       <Icons.logo className={cn("h-6 w-6", className)} />
       <span
         className={cn(
-          "font-satoshi hidden font-bold sm:inline-block",
+          "hidden font-satoshi font-bold sm:inline-block",
           className
         )}
       >

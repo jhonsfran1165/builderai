@@ -26,7 +26,7 @@ export function AuthenticationContainer({
       >
         {linkText}
       </Link>
-      <div className="bg-muted hidden h-full flex-col p-10 lg:flex">
+      <div className="hidden h-full flex-col bg-muted p-10 lg:flex">
         <BlurImage
           src="https://images.unsplash.com/photo-1590069261209-f8e9b8642343?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80"
           alt="Builderai logo"
@@ -35,7 +35,7 @@ export function AuthenticationContainer({
           className="absolute left-0 top-0 h-screen w-1/2 object-cover"
         />
         <div className="absolute z-20 flex items-center text-lg font-medium">
-          <Logo className="text-primary h-10 w-auto text-2xl" />
+          <Logo className="h-10 w-auto text-2xl text-primary" />
         </div>
         <div className="relative z-20 mt-auto">
           <blockquote className="space-y-2">
@@ -51,18 +51,18 @@ export function AuthenticationContainer({
       <div className="lg:p-8">
         <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
           {children}
-          <p className="text-muted-foreground px-8 text-center text-sm">
+          <p className="px-8 text-center text-sm text-muted-foreground">
             By clicking continue, you agree to our{" "}
             <Link
               href="/terms"
-              className="hover:text-primary underline underline-offset-4"
+              className="underline underline-offset-4 hover:text-primary"
             >
               Terms of Service
             </Link>{" "}
             and{" "}
             <Link
               href="/privacy"
-              className="hover:text-primary underline underline-offset-4"
+              className="underline underline-offset-4 hover:text-primary"
             >
               Privacy Policy
             </Link>

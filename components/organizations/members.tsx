@@ -1,14 +1,10 @@
 "use client"
 
-import { useState } from "react"
-import { useRouter } from "next/navigation"
 import { ChevronDown } from "lucide-react"
+import { useRouter } from "next/navigation"
+import { useState } from "react"
 import { mutate } from "swr"
 
-import { ORGANIZATION_ROLES } from "@/lib/config/layout"
-import { useStore } from "@/lib/stores/layout"
-import { OrganizationProfiles, Profile } from "@/lib/types/supabase"
-import { fetchAPI } from "@/lib/utils"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
 import {
@@ -16,7 +12,7 @@ import {
   CardContent,
   CardDescription,
   CardHeader,
-  CardTitle,
+  CardTitle
 } from "@/components/ui/card"
 import {
   Command,
@@ -24,15 +20,19 @@ import {
   CommandGroup,
   CommandInput,
   CommandItem,
-  CommandList,
+  CommandList
 } from "@/components/ui/command"
 import {
   Popover,
   PopoverContent,
-  PopoverTrigger,
+  PopoverTrigger
 } from "@/components/ui/popover"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { toast } from "@/components/ui/use-toast"
+import { ORGANIZATION_ROLES } from "@/lib/config/layout"
+import { useStore } from "@/lib/stores/layout"
+import { OrganizationProfiles, Profile } from "@/lib/types/supabase"
+import { fetchAPI } from "@/lib/utils"
 
 export type MembersListProps = OrganizationProfiles & {
   profile: Profile | Profile[] | null
@@ -134,10 +134,9 @@ export function MembersList({
                   <div className="flex items-center space-x-4">
                     <Avatar>
                       <AvatarImage
-                        src={`${
-                          profileUser?.avatar_url ||
+                        src={`${profileUser?.avatar_url ||
                           "https://avatar.vercel.sh/account.png"
-                        }`}
+                          }`}
                       />
                       <AvatarFallback>OM</AvatarFallback>
                     </Avatar>

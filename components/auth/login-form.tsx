@@ -6,7 +6,6 @@ import { useState } from "react"
 import { SubmitHandler, useForm } from "react-hook-form"
 
 import { useSupabase } from "@/components/auth/supabase-provider"
-import { Icons } from "@/components/shared/icons"
 import { Button } from "@/components/ui/button"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
@@ -15,6 +14,7 @@ import {
   authLoginValidationSchema,
   type authLoginValidationType
 } from "@/lib/validations/auth"
+import { Github, Loader2 } from "lucide-react"
 
 
 export function LoginForm() {
@@ -61,7 +61,7 @@ export function LoginForm() {
         <h1 className="text-2xl font-semibold tracking-tight">
           Sign in to your account
         </h1>
-        <p className="text-muted-foreground text-sm">
+        <p className="text-sm text-muted-foreground">
           Enter your email below
         </p>
       </div>
@@ -114,10 +114,10 @@ export function LoginForm() {
           form="login-form"
           type="submit"
           variant={"default"}
-          className="text-primary-foreground font-semibold"
+          className="font-semibold text-primary-foreground"
         >
           {isLoading && (
-            <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
+            <Loader2 className="mr-2 h-4 w-4 animate-spin" />
           )}
           Sign In with Email
         </Button>
@@ -128,7 +128,7 @@ export function LoginForm() {
           <span className="w-full border-t" />
         </div>
         <div className="relative flex justify-center text-xs uppercase">
-          <span className="bg-background-base text-muted-foreground px-2">
+          <span className="bg-background-base px-2 text-muted-foreground">
             Or continue with
           </span>
         </div>
@@ -146,9 +146,9 @@ export function LoginForm() {
         }}
       >
         {isLoading ? (
-          <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
+          <Loader2 className="mr-2 h-4 w-4 animate-spin" />
         ) : (
-          <Icons.gitHub className="mr-2 h-4 w-4" />
+          <Github className="mr-2 h-4 w-4" />
         )}{" "}
         Github
       </Button>

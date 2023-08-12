@@ -4,7 +4,7 @@ import {
   CardContent,
   CardFooter,
   CardHeader,
-  CardTitle,
+  CardTitle
 } from "@/components/ui/card"
 import { Separator } from "@/components/ui/separator"
 import { Skeleton } from "@/components/ui/skeleton"
@@ -46,11 +46,6 @@ export function OrganizationFormSkeleton() {
         <div className="w-full space-y-3">
           <Skeleton className="h-[15px] w-[100px]" />
           <Skeleton className="h-[40px] w-full" />
-        </div>
-
-        <div className="space-y-3">
-          <Skeleton className="h-[15px] w-[100px]" />
-          <div className="flex h-14 w-full animate-pulse items-center justify-center space-x-2 rounded-md border-2 border-dashed"></div>
         </div>
 
         <div className="space-y-3">

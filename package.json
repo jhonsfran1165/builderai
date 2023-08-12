@@ -63,7 +63,7 @@
     "date-fns": "^2.29.3",
     "encoding": "^0.1.13",
     "framer-motion": "^9.0.2",
-    "lucide-react": "0.105.0-alpha.4",
+    "lucide-react": "0.214.0",
     "ms": "^2.1.3",
     "nanoid": "^4.0.0",
     "next": "13.4.9",

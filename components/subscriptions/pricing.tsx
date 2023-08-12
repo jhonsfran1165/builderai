@@ -1,25 +1,25 @@
 "use client"
 
-import { useMemo, useState } from "react"
 import Link from "next/link"
+import { useMemo, useState } from "react"
 import Confetti from "react-dom-confetti"
 
-import { pricingSubscriptions } from "@/lib/config/subscriptions"
-import { useStore } from "@/lib/stores/layout"
-import { getStripe } from "@/lib/stripe/client"
-import { PriceSubscription } from "@/lib/types"
-import { cn, fetchAPI, nFormatter } from "@/lib/utils"
+import MaxWidthWrapper from "@/components/shared/max-width-wrapper"
 import { Button } from "@/components/ui/button"
 import { Switch } from "@/components/ui/switch"
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
-  TooltipTrigger,
+  TooltipTrigger
 } from "@/components/ui/tooltip"
 import { toast } from "@/components/ui/use-toast"
-import { Icons } from "@/components/shared/icons"
-import MaxWidthWrapper from "@/components/shared/max-width-wrapper"
+import { pricingSubscriptions } from "@/lib/config/subscriptions"
+import { useStore } from "@/lib/stores/layout"
+import { getStripe } from "@/lib/stripe/client"
+import { PriceSubscription } from "@/lib/types"
+import { cn, fetchAPI, nFormatter } from "@/lib/utils"
+import { CheckCircle, HelpCircle, XCircle } from "lucide-react"
 
 const Pricing = ({ type = "public" }: { type: string }) => {
   const { orgSlug, orgData, projectSlug } = useStore()
@@ -177,7 +177,7 @@ const Pricing = ({ type = "public" }: { type: string }) => {
                   <TooltipProvider>
                     <Tooltip>
                       <TooltipTrigger asChild>
-                        <Icons.help className="h-4 w-4" />
+                        <HelpCircle className="h-4 w-4" />
                       </TooltipTrigger>
                       <TooltipContent className="w-80">
                         <p>
@@ -199,9 +199,9 @@ const Pricing = ({ type = "public" }: { type: string }) => {
                   >
                     <div className="shrink-0">
                       {negative ? (
-                        <Icons.xCircle className="h-4 w-4 text-danger-solid" />
+                        <XCircle className="h-4 w-4 text-danger-solid" />
                       ) : (
-                        <Icons.checkCircle className="h-4 w-4 text-success-solid" />
+                        <CheckCircle className="h-4 w-4 text-success-solid" />
                       )}
                     </div>
                     {footnote ? (
@@ -212,7 +212,7 @@ const Pricing = ({ type = "public" }: { type: string }) => {
                           <Tooltip>
                             <TooltipTrigger asChild>
                               <div className="flex h-4 w-8 justify-center">
-                                <Icons.help className="h-4 w-4" />
+                                <HelpCircle className="h-4 w-4" />
                               </div>
                             </TooltipTrigger>
                             <TooltipContent className="w-80">

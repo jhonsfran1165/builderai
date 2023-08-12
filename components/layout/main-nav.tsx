@@ -11,12 +11,12 @@ import { cn } from "@/lib/utils"
 
 export function MainNav() {
   return (
-    <div className="bg-background-bgSubtle flex h-16 items-center space-x-2 sm:justify-between sm:space-x-0">
+    <div className="flex h-16 items-center space-x-2 bg-background-bgSubtle sm:justify-between sm:space-x-0">
       <div className="flex items-center justify-start">
         <Logo />
         <Separator
           orientation="vertical"
-          className="text-background-textContrast ml-6 mr-5 hidden h-6 rotate-[30deg] gap-0 md:inline-block"
+          className="ml-6 mr-5 hidden h-6 rotate-[30deg] gap-0 text-background-textContrast md:inline-block"
         />
         <OrganizationSwitch />
         <ProjectContext />

@@ -1,6 +1,6 @@
 "use client"
 
-import { useStore } from "@/lib/stores/layout"
+import { useSupabase } from "@/components/auth/supabase-provider"
 import { Avatar, AvatarImage } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
 import {
@@ -11,10 +11,10 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuShortcut,
-  DropdownMenuTrigger,
+  DropdownMenuTrigger
 } from "@/components/ui/dropdown-menu"
-import { useSupabase } from "@/components/auth/supabase-provider"
-import { Icons } from "@/components/shared/icons"
+import { useStore } from "@/lib/stores/layout"
+import { CreditCard, LifeBuoy, LogOut, Plus, Settings, User, Users } from "lucide-react"
 
 export function AccountToggle() {
   const { supabase } = useSupabase()
@@ -47,17 +47,17 @@ export function AccountToggle() {
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
           <DropdownMenuItem>
-            <Icons.user className="mr-2 h-4 w-4" />
+            <User className="mr-2 h-4 w-4" />
             <span>Profile</span>
             <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
           </DropdownMenuItem>
           <DropdownMenuItem>
-            <Icons.billing className="mr-2 h-4 w-4" />
+            <CreditCard className="mr-2 h-4 w-4" />
             <span>Billing</span>
             <DropdownMenuShortcut>⌘B</DropdownMenuShortcut>
           </DropdownMenuItem>
           <DropdownMenuItem>
-            <Icons.settings className="mr-2 h-4 w-4" />
+            <Settings className="mr-2 h-4 w-4" />
             <span>Settings</span>
             <DropdownMenuShortcut>⌘S</DropdownMenuShortcut>
           </DropdownMenuItem>
@@ -65,11 +65,11 @@ export function AccountToggle() {
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
           <DropdownMenuItem>
-            <Icons.users className="mr-2 h-4 w-4" />
+            <Users className="mr-2 h-4 w-4" />
             <span>Organization</span>
           </DropdownMenuItem>
           <DropdownMenuItem>
-            <Icons.add className="mr-2 h-4 w-4" />
+            <Plus className="mr-2 h-4 w-4" />
             <span>New Organization</span>
             <DropdownMenuShortcut>⌘+T</DropdownMenuShortcut>
           </DropdownMenuItem>
@@ -77,7 +77,7 @@ export function AccountToggle() {
         <DropdownMenuSeparator />
 
         <DropdownMenuItem>
-          <Icons.lifeBuoy className="mr-2 h-4 w-4" />
+          <LifeBuoy className="mr-2 h-4 w-4" />
           <span>Support</span>
         </DropdownMenuItem>
 
@@ -87,7 +87,7 @@ export function AccountToggle() {
             await supabase.auth.signOut()
           }}
         >
-          <Icons.logOut className="mr-2 h-4 w-4" />
+          <LogOut className="mr-2 h-4 w-4" />
           <span>Log out</span>
           <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
         </DropdownMenuItem>

@@ -1,10 +1,9 @@
 "use client"
 
-import { useState } from "react"
 import Link from "next/link"
+import { useState } from "react"
 
-import { useStore } from "@/lib/stores/layout"
-import { cn } from "@/lib/utils"
+import OrganizationLink from "@/components/organizations/organization-link"
 import { Avatar, AvatarImage } from "@/components/ui/avatar"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
@@ -15,15 +14,16 @@ import {
   CommandInput,
   CommandItem,
   CommandList,
-  CommandSeparator,
+  CommandSeparator
 } from "@/components/ui/command"
 import {
   Popover,
   PopoverContent,
-  PopoverTrigger,
+  PopoverTrigger
 } from "@/components/ui/popover"
-import OrganizationLink from "@/components/organizations/organization-link"
-import { Icons } from "@/components/shared/icons"
+import { useStore } from "@/lib/stores/layout"
+import { cn } from "@/lib/utils"
+import { Check, ChevronsUpDown, PlusCircle } from "lucide-react"
 
 export function OrganizationSwitch() {
   const { orgSlug, orgData, appClaims } = useStore()
@@ -46,7 +46,7 @@ export function OrganizationSwitch() {
             aria-label="Select an organization"
             className="button-ghost justify-between p-1"
           >
-            <Icons.chevronsupdown
+            <ChevronsUpDown
               className="ml-auto h-4 w-4 shrink-0 opacity-60"
               aria-hidden="true"
             />
@@ -91,7 +91,7 @@ export function OrganizationSwitch() {
                           <Badge variant={"outline"}>default</Badge>
                         )}
                         {org.slug === orgSlug && (
-                          <Icons.check
+                          <Check
                             className={cn(
                               "ml-auto h-4 w-4",
                               org.slug === orgSlug ? "opacity-100" : "opacity-0"
@@ -113,7 +113,7 @@ export function OrganizationSwitch() {
                   }}
                 >
                   <Link className="m-0 flex" href={"/org"}>
-                    <Icons.plusCircle className="mr-2 h-5 w-5" />
+                    <PlusCircle className="mr-2 h-5 w-5" />
                     Create Organization
                   </Link>
                 </CommandItem>

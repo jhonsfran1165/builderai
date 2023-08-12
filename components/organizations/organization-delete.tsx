@@ -1,22 +1,22 @@
 "use client"
 
-import { useState } from "react"
 import { useRouter } from "next/navigation"
+import { useState } from "react"
 
-import { fetchAPI } from "@/lib/utils"
+import { useSupabase } from "@/components/auth/supabase-provider"
+import { ConfirmAction } from "@/components/shared/confirm-action"
 import { Button } from "@/components/ui/button"
 import {
   Card,
   CardDescription,
   CardFooter,
   CardHeader,
-  CardTitle,
+  CardTitle
 } from "@/components/ui/card"
 import { Separator } from "@/components/ui/separator"
 import { toast } from "@/components/ui/use-toast"
-import { useSupabase } from "@/components/auth/supabase-provider"
-import { ConfirmAction } from "@/components/shared/confirm-action"
-import { Icons } from "@/components/shared/icons"
+import { fetchAPI } from "@/lib/utils"
+import { Loader2 } from "lucide-react"
 
 export function OrganizationDelete({
   orgSlug,
@@ -75,7 +75,7 @@ export function OrganizationDelete({
   const trigger = (
     <div className="flex justify-end">
       <Button disabled={loading} title="Delete" className="button-danger w-28">
-        {loading && <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />}
+        {loading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
         Delete
       </Button>
     </div>

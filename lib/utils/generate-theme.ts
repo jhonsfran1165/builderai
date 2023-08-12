@@ -72,7 +72,7 @@ const generateTheme = (themeName: keyof typeof themeNames) => {
       foreground: toRadixVar(theme.destructive, 3),
     },
     muted: {
-      DEFAULT: toRadixVar(theme.muted, 7),
+      DEFAULT: toRadixVar(theme.muted, 8),
       foreground: toRadixVar(theme.muted, 11),
     },
     accent: {

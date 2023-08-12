@@ -10,9 +10,9 @@ export const TabsNav = () => {
   if (!orgSlug) return null
 
   return (
-    <div className="bg-background-bgSubtle flex h-12 items-center justify-start space-x-2">
+    <div className="bg-background-bgSubtle flex h-12 items-center justify-start">
       <ScrollArea className="h-13 -mb-1 max-w-[600px] lg:max-w-none">
-        <nav className="flex flex-wrap items-center gap-2">
+        <nav className="flex items-center gap-2">
           {tabs.length > 0 &&
             tabs.map((tab, index) => (
               <Tab

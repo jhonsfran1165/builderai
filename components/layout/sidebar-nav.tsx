@@ -37,7 +37,7 @@ export function DashboardSideBarNav({
                 }
               )}
             >
-              <Icon className="text-primary-solid mr-2 h-4 w-4" />
+              <Icon className="mr-2 h-4 w-4 text-primary-solid" />
               <span
                 className={cn({
                   "text-background-textContrast": active,

@@ -41,11 +41,11 @@ const localhostTest = (userConfig = {}) => ({
  * Also build a saas with good analytics is hard and depends on great measure
  * on the features and the nature of the business. That is why I used an opinionated
  * way to track events and pages views. This way you can implement your own provider
- * This library has a lot of plugins if you want to use but for me tinybird is the most
+ * This library has a lot of plugins if you want to use one of them, but for me tinybird is the most
  * scalable way to do it.
  */
+
 /* Initialize analytics & load plugins */
-// TODO: add debugger to localhost plugin to avoid verbose console
 export const analytics = Analytics({
   app: "builderai",
   plugins: [

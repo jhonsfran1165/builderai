@@ -7,7 +7,6 @@ import { SubmitHandler, useForm } from "react-hook-form"
 import { mutate } from "swr"
 
 import { useSupabase } from "@/components/auth/supabase-provider"
-import { Icons } from "@/components/shared/icons"
 import { Avatar, AvatarImage } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
 import {
@@ -44,7 +43,7 @@ import { Organization } from "@/lib/types/supabase"
 import { createSlug, fetchAPI } from "@/lib/utils"
 import { orgPostSchema, orgPostType } from "@/lib/validations/org"
 
-import "./styles.css"
+import { Loader2 } from "lucide-react"
 
 export function OrganizationForm({ org }: { org?: Organization }) {
   const router = useRouter()
@@ -318,7 +317,7 @@ export function OrganizationForm({ org }: { org?: Organization }) {
             type="submit"
             className="button-primary w-28"
           >
-            {loading && <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />}
+            {loading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
             Save
           </Button>
         </div>
