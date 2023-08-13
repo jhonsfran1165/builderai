@@ -16,6 +16,7 @@ import { useStore } from "@/lib/stores/layout"
 import useProject from "@/lib/swr/use-project"
 import { AppClaims, AppModulesNav } from "@/lib/types"
 import { Session } from "@/lib/types/supabase"
+import { refreshJWT } from "@/lib/utils/jwt-refresher"
 
 // TODO: separation of concerns for this and clean
 // TODO: implement legend state
@@ -165,8 +166,8 @@ function StoreHandler({
         value: { org_slug: orgSlug, org_id: orgId },
       })
 
-      const { error } = await supabase.auth.refreshSession()
-      if (error) await supabase.auth.signOut()
+      // refresh token
+      await refreshJWT(supabase)
 
       mutate(`/api/org`)
       mutate(`/api/org/${orgSlug}`)

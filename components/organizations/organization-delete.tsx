@@ -16,6 +16,7 @@ import {
 import { Separator } from "@/components/ui/separator"
 import { toast } from "@/components/ui/use-toast"
 import { fetchAPI } from "@/lib/utils"
+import { refreshJWT } from "@/lib/utils/jwt-refresher"
 import { Loader2 } from "lucide-react"
 
 export function OrganizationDelete({
@@ -53,10 +54,7 @@ export function OrganizationDelete({
 
       if (org.slug) {
         // refreshing supabase JWT
-        const { error } = await supabase.auth.refreshSession()
-        // if refresh token is expired or something else then logout
-        if (error) await supabase.auth.signOut()
-
+        await refreshJWT(supabase)
         router.push("/")
       }
     } catch (e) {

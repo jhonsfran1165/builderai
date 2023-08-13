@@ -10,7 +10,6 @@ import { Switch } from "@/components/ui/switch"
 import {
   Tooltip,
   TooltipContent,
-  TooltipProvider,
   TooltipTrigger
 } from "@/components/ui/tooltip"
 import { toast } from "@/components/ui/use-toast"
@@ -174,21 +173,19 @@ const Pricing = ({ type = "public" }: { type: string }) => {
                 <div className="flex items-center justify-center space-x-1">
                   <p className="text-background-textContrast">{clicksLimit}</p>
 
-                  <TooltipProvider>
-                    <Tooltip>
-                      <TooltipTrigger asChild>
-                        <HelpCircle className="h-4 w-4" />
-                      </TooltipTrigger>
-                      <TooltipContent className="w-80">
-                        <p>
-                          If you exceed your monthly usage, your existing links
-                          will still work, but you need to upgrade to view their
-                          stats/add more links. Link clicks are shared across
-                          all projects.
-                        </p>
-                      </TooltipContent>
-                    </Tooltip>
-                  </TooltipProvider>
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <HelpCircle className="h-4 w-4" />
+                    </TooltipTrigger>
+                    <TooltipContent className="w-80">
+                      <p>
+                        If you exceed your monthly usage, your existing links
+                        will still work, but you need to upgrade to view their
+                        stats/add more links. Link clicks are shared across
+                        all projects.
+                      </p>
+                    </TooltipContent>
+                  </Tooltip>
                 </div>
               </div>
               <ul className="my-10 space-y-5 px-10">
@@ -208,18 +205,16 @@ const Pricing = ({ type = "public" }: { type: string }) => {
                       <div className="flex items-center">
                         <p className={"justify-start"}>{text}</p>
 
-                        <TooltipProvider>
-                          <Tooltip>
-                            <TooltipTrigger asChild>
-                              <div className="flex h-4 w-8 justify-center">
-                                <HelpCircle className="h-4 w-4" />
-                              </div>
-                            </TooltipTrigger>
-                            <TooltipContent className="w-80">
-                              {footnote}
-                            </TooltipContent>
-                          </Tooltip>
-                        </TooltipProvider>
+                        <Tooltip>
+                          <TooltipTrigger asChild>
+                            <div className="flex h-4 w-8 justify-center">
+                              <HelpCircle className="h-4 w-4" />
+                            </div>
+                          </TooltipTrigger>
+                          <TooltipContent className="w-80">
+                            {footnote}
+                          </TooltipContent>
+                        </Tooltip>
                       </div>
                     ) : (
                       <p className={""}>{text}</p>

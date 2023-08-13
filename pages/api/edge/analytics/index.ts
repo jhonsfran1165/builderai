@@ -15,6 +15,9 @@ export const config = {
   // regions: 'iad1', // optional
 }
 
+// TODO: revalidate every 5 minutes?
+export const dynamic = "force-dynamic"
+
 export default async function handler(req: NextRequest, ev: NextFetchEvent) {
   try {
     if (req.method === "POST") {

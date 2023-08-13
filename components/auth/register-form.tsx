@@ -39,6 +39,10 @@ export function RegisterForm() {
       const { error } = await supabase.auth.signUp({
         email,
         password,
+        // TODO: implement email verification or delete sign up with email
+        // options: {
+        //   emailRedirectTo: `${location.origin}/auth/callback`,
+        // },
       })
 
       if (error) throw error

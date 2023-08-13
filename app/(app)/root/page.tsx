@@ -13,10 +13,6 @@ export default async function RootPage() {
     data: { session },
   } = await supabase.auth.getSession()
 
-  if (!session) {
-    redirect("/login")
-  }
-
   const appClaims = session?.user.app_metadata as AppClaims
   const { currentOrg, defaultOrgSlug } = getOrgsFromClaims({ appClaims })
 

@@ -5,6 +5,8 @@ import { AppClaims } from "@/lib/types"
 
 export const revalidate = 0
 
+// validate claims and redirect to org if it exists
+// from resources perspective, this is only checking the cookie, no db calls
 export default async function DashboardLayout({
   children,
   params: { orgSlug },

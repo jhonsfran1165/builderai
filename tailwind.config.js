@@ -4,7 +4,7 @@ const { generateTheme } = require("./lib/utils/generate-theme")
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   // mode: "jit", // mode just in time
-  darkMode: ["class", '[data-theme="dark"]'],
+  darkMode: ["class"],
   // prefix: 'builderai-', // activate to use prefixes here
   content: ["app/**/*.{ts,tsx}", "components/**/*.{ts,tsx}"],
   // disble hover on mobiles

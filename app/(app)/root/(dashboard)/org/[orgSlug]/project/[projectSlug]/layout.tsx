@@ -2,6 +2,10 @@ import { notFound } from "next/navigation"
 
 import { createServerClient } from "@/lib/supabase/supabase-server"
 
+
+export const revalidate = 0
+
+// TODO: validate from client and redirect to not found if project does not exist
 export default async function DashboardLayout({
   children,
   params: { projectSlug },

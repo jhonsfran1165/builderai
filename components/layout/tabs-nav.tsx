@@ -10,7 +10,7 @@ export const TabsNav = () => {
   if (!orgSlug) return null
 
   return (
-    <div className="bg-background-bgSubtle flex h-12 items-center justify-start">
+    <div className="flex h-12 items-center justify-start bg-background-bgSubtle">
       <ScrollArea className="h-13 -mb-1 max-w-[600px] lg:max-w-none">
         <nav className="flex items-center gap-2">
           {tabs.length > 0 &&

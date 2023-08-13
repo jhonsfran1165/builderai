@@ -43,6 +43,7 @@ import { Organization } from "@/lib/types/supabase"
 import { createSlug, fetchAPI } from "@/lib/utils"
 import { orgPostSchema, orgPostType } from "@/lib/validations/org"
 
+import { refreshJWT } from "@/lib/utils/jwt-refresher"
 import { Loader2 } from "lucide-react"
 
 export function OrganizationForm({ org }: { org?: Organization }) {
@@ -123,11 +124,8 @@ export function OrganizationForm({ org }: { org?: Organization }) {
         })
 
         if (action === "new") {
-          // refreshing supabase JWT after creating a new organization
-          // we handle authorization to other orgs with the JWT payload
-          const { error } = await supabase.auth.refreshSession()
-          // if refresh token is expired or something else then logout
-          if (error) await supabase.auth.signOut()
+          // refreshing supabase JWT
+          await refreshJWT(supabase)
 
           // Refresh the current route and fetch new data from the server without
           // losing client-side browser or React state.
