@@ -3,7 +3,6 @@
 import { useRouter } from "next/navigation"
 import { useState } from "react"
 
-import { useSupabase } from "@/components/auth/supabase-provider"
 import { ConfirmAction } from "@/components/shared/confirm-action"
 import { Button } from "@/components/ui/button"
 import {
@@ -15,8 +14,9 @@ import {
 } from "@/components/ui/card"
 import { Separator } from "@/components/ui/separator"
 import { toast } from "@/components/ui/use-toast"
+import { db } from "@/lib/db/browser"
+import { refreshJWT } from "@/lib/db/jwt-refresher"
 import { fetchAPI } from "@/lib/utils"
-import { refreshJWT } from "@/lib/utils/jwt-refresher"
 import { Loader2 } from "lucide-react"
 
 export function OrganizationDelete({
@@ -30,7 +30,6 @@ export function OrganizationDelete({
 }) {
   const router = useRouter()
   const [loading, setlLoading] = useState(false)
-  const { supabase } = useSupabase()
 
   const deleteOrg = async () => {
     try {
@@ -54,7 +53,7 @@ export function OrganizationDelete({
 
       if (org.slug) {
         // refreshing supabase JWT
-        await refreshJWT(supabase)
+        await refreshJWT(db())
         router.push("/")
       }
     } catch (e) {

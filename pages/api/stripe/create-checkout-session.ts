@@ -6,8 +6,8 @@ import {
   withMethods,
   withValidation,
 } from "@/lib/api-middlewares"
+import { db } from "@/lib/db/api"
 import { stripe } from "@/lib/stripe"
-import { supabaseApiClient } from "@/lib/supabase/supabase-api"
 import { Profile, Session } from "@/lib/types/supabase"
 import { getAppRootUrl } from "@/lib/utils"
 import { stripePostSchema } from "@/lib/validations/stripe"
@@ -19,12 +19,10 @@ async function handler(
   profile: Profile
 ) {
   try {
-    const supabase = supabaseApiClient(req, res)
-
     if (req.method === "POST") {
       const { orgSlug, stripePriceId, trialDays, metadata, currency } = req.body
 
-      const { data: org, error } = await supabase
+      const { data: org, error } = await db
         .from("organization")
         .select("*")
         .eq("slug", orgSlug)

@@ -4,19 +4,19 @@ import {
   usePathname,
   useRouter,
   useSelectedLayoutSegments
-} from "next/navigation"
-import { useEffect, useMemo, useRef } from "react"
-import { mutate } from "swr"
+} from "next/navigation";
+import { useEffect, useMemo, useRef } from "react";
+import { mutate } from "swr";
 
-import { useSupabase } from "@/components/auth/supabase-provider"
-import { toast } from "@/components/ui/use-toast"
-import { getActiveTabs } from "@/lib/config/dashboard"
-import { useTrackPage } from "@/lib/hooks/use-track-page"
-import { useStore } from "@/lib/stores/layout"
-import useProject from "@/lib/swr/use-project"
-import { AppClaims, AppModulesNav } from "@/lib/types"
-import { Session } from "@/lib/types/supabase"
-import { refreshJWT } from "@/lib/utils/jwt-refresher"
+import { toast } from "@/components/ui/use-toast";
+import { getActiveTabs } from "@/lib/config/dashboard";
+import { db } from "@/lib/db/browser";
+import { refreshJWT } from "@/lib/db/jwt-refresher";
+import { useTrackPage } from "@/lib/hooks/use-track-page";
+import { useStore } from "@/lib/stores/layout";
+import useProject from "@/lib/swr/use-project";
+import { AppClaims, AppModulesNav } from "@/lib/types";
+import { Session } from "@/lib/types/supabase";
 
 // TODO: separation of concerns for this and clean
 // TODO: implement legend state
@@ -34,7 +34,7 @@ function StoreHandler({
   const segments = useSelectedLayoutSegments()
   const startTimeRef = useRef(Date.now())
   const initialized = useRef(false)
-  const { supabase } = useSupabase()
+  const database = db()
 
   const [page] = useTrackPage()
 
@@ -161,13 +161,13 @@ function StoreHandler({
 
   useEffect(() => {
     const setClaimOrg = async () => {
-      await supabase.rpc("set_my_claim", {
+      await database.rpc("set_my_claim", {
         claim: "current_org",
         value: { org_slug: orgSlug, org_id: orgId },
       })
 
       // refresh token
-      await refreshJWT(supabase)
+      await refreshJWT(database)
 
       mutate(`/api/org`)
       mutate(`/api/org/${orgSlug}`)
@@ -176,7 +176,7 @@ function StoreHandler({
 
     // every organization that passes until here is validated from the server to see if it belongs to the organization
     orgSlug && currentOrgClaim?.org_slug !== orgSlug && setClaimOrg()
-  }, [currentOrgClaim?.org_slug, orgId, orgSlug, supabase])
+  }, [currentOrgClaim?.org_slug, orgId, orgSlug, database])
 
   useEffect(() => {
     useStore.setState({

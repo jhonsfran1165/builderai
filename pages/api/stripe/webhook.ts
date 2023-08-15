@@ -5,9 +5,6 @@ import Stripe from "stripe"
 import { onCheckoutCompleted } from "@/lib/api/stripe"
 // import { PRO_TIERS } from "@/lib/config/subscriptions"
 import { stripe } from "@/lib/stripe"
-import supabaseAdmin from "@/lib/supabase/supabase-admin"
-import { redis } from "@/lib/upstash"
-import { getEnv, log } from "@/lib/utils"
 
 // Stripe requires the raw body to construct the event.
 export const config = {

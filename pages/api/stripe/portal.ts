@@ -5,8 +5,8 @@ import {
   withMethods,
   withValidation,
 } from "@/lib/api-middlewares"
+import { supabaseApiClient } from "@/lib/db/supabase-api"
 import { stripe } from "@/lib/stripe"
-import { supabaseApiClient } from "@/lib/supabase/supabase-api"
 import { Organization, Profile, Session } from "@/lib/types/supabase"
 import { getAppRootUrl } from "@/lib/utils"
 import { stripePortalPostSchema } from "@/lib/validations/stripe"

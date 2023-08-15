@@ -1,9 +1,9 @@
 import Stripe from "stripe"
 import { v4 as uuidv4 } from "uuid"
 
-import { stripe } from "@/lib/stripe"
 // we need to override RLS here, for that we use supabase admin
-import supabaseAdmin from "@/lib/supabase/supabase-admin"
+import { db } from "@/lib/db/admin"
+import { stripe } from "@/lib/stripe"
 import {
   OrganizationSubscriptionInterval,
   OrganizationSubscriptionStatus,
@@ -69,7 +69,7 @@ const onCheckoutCompleted = async ({
   stripeId?: string
   orgId: string
 }) => {
-  const { data: orgData, error: noOrgError } = await supabaseAdmin
+  const { data: orgData, error: noOrgError } = await db
     .from("organization")
     .select("id, stripe_id")
     .eq("id", orgId)
@@ -80,7 +80,7 @@ const onCheckoutCompleted = async ({
     expand: ["default_payment_method"],
   })
 
-  const { data: projectData, error: errorProject } = await supabaseAdmin
+  const { data: projectData, error: errorProject } = await db
     .from("project")
     .select("id")
     .eq("slug", subscription.metadata?.projectSlug)
@@ -105,13 +105,13 @@ const onCheckoutCompleted = async ({
     throw "stripeId is no the same"
 
   const result = await Promise.all([
-    supabaseAdmin
+    db
       .from("organization")
       .update({
         stripe_id: stripeId,
       })
       .eq("id", orgId),
-    supabaseAdmin.from("organization_subscriptions").insert(subscriptionData),
+    db().from("organization_subscriptions").insert(subscriptionData),
   ])
 
   console.log(result)

@@ -3,8 +3,8 @@
 import { useRouter } from "next/navigation"
 import { useCallback, useEffect } from "react"
 
-import { useSupabase } from "@/components/auth/supabase-provider"
-import { refreshJWT } from "@/lib/utils/jwt-refresher"
+import { db } from "@/lib/db/browser"
+import { refreshJWT } from "@/lib/db/jwt-refresher"
 
 // this component handles refreshing server data when the user logs in or out
 // this method avoids the need to pass a session down to child components
@@ -18,19 +18,18 @@ export default function SupabaseListener({
   orgIdsBelongToUser: Array<string>
   profileId?: string
 }) {
-  const { supabase } = useSupabase()
   const router = useRouter()
-
   const filterOrgIds = orgIdsBelongToUser.join(", ")
+  const database = db()
 
   const handleRefreshToken = useCallback(async (_payload: any) => {
-    await refreshJWT(supabase)
-  }, [supabase])
+    await refreshJWT(database)
+  }, [database])
 
   // hacky approach to refresh JWT token from the server
   // TODO: evaluate the performance impact of this approach
   useEffect(() => {
-    const channel = supabase
+    const channel = database
       .channel("org-db-changes")
       .on(
         "postgres_changes",
@@ -75,14 +74,14 @@ export default function SupabaseListener({
       .subscribe()
 
     return () => {
-      supabase.removeChannel(channel)
+      database.removeChannel(channel)
     }
-  }, [handleRefreshToken, filterOrgIds, profileId, supabase])
+  }, [handleRefreshToken, filterOrgIds, profileId, database])
 
   useEffect(() => {
     const {
       data: { subscription },
-    } = supabase.auth.onAuthStateChange((event, session) => {
+    } = database.auth.onAuthStateChange((event, session) => {
       console.log(event)
       if (session?.access_token !== serverAccessToken) {
         router.refresh()
@@ -92,7 +91,7 @@ export default function SupabaseListener({
     return () => {
       subscription.unsubscribe()
     }
-  }, [serverAccessToken, router, supabase])
+  }, [serverAccessToken, router, database])
 
   return null
 }

@@ -6,7 +6,6 @@ import { useEffect, useState } from "react"
 import { SubmitHandler, useForm } from "react-hook-form"
 import { mutate } from "swr"
 
-import { useSupabase } from "@/components/auth/supabase-provider"
 import { Avatar, AvatarImage } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
 import {
@@ -39,16 +38,16 @@ import { toast } from "@/components/ui/use-toast"
 import useOrganizationExist from "@/hooks/use-organization-exist"
 import { trackEvent } from "@/lib/analytics/track-event"
 import { ORGANIZATION_TYPES } from "@/lib/config/layout"
+import { db } from "@/lib/db/browser"
 import { Organization } from "@/lib/types/supabase"
 import { createSlug, fetchAPI } from "@/lib/utils"
 import { orgPostSchema, orgPostType } from "@/lib/validations/org"
 
-import { refreshJWT } from "@/lib/utils/jwt-refresher"
+import { refreshJWT } from "@/lib/db/jwt-refresher"
 import { Loader2 } from "lucide-react"
 
 export function OrganizationForm({ org }: { org?: Organization }) {
   const router = useRouter()
-  const { supabase } = useSupabase()
 
   const action = org ? "edit" : "new"
 
@@ -125,7 +124,7 @@ export function OrganizationForm({ org }: { org?: Organization }) {
 
         if (action === "new") {
           // refreshing supabase JWT
-          await refreshJWT(supabase)
+          await refreshJWT(db())
 
           // Refresh the current route and fetch new data from the server without
           // losing client-side browser or React state.

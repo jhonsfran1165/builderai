@@ -5,11 +5,11 @@ import { useRouter } from "next/navigation"
 import { useState } from "react"
 import { SubmitHandler, useForm } from "react-hook-form"
 
-import { useSupabase } from "@/components/auth/supabase-provider"
 import { Button } from "@/components/ui/button"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import { toast } from "@/components/ui/use-toast"
+import { fetchAPI } from "@/lib/utils"
 import {
   authLoginValidationSchema,
   type authLoginValidationType
@@ -19,13 +19,13 @@ import { Github, Loader2 } from "lucide-react"
 
 export function LoginForm() {
   const [isLoading, setIsLoading] = useState<boolean>(false)
-  const { supabase } = useSupabase()
   const router = useRouter()
 
   const form = useForm<authLoginValidationType>({
     resolver: zodResolver(authLoginValidationSchema),
     defaultValues: {
       email: "",
+      password: "",
     },
   })
 
@@ -36,15 +36,21 @@ export function LoginForm() {
     try {
       setIsLoading(true)
 
-      const { error } = await supabase.auth.signInWithPassword({
-        email,
-        password,
+      const { error } = await fetchAPI({
+        url: "/api/auth/login",
+        method: "POST",
+        data: {
+          email,
+          password,
+          provider: "email"
+        },
       })
 
       if (error) throw error
 
       router.push("/")
     } catch (error) {
+      console.log(error)
       toast({
         title: "Login error",
         description: error.message,
@@ -100,7 +106,8 @@ export function LoginForm() {
               <FormControl>
                 <Input
                   {...field}
-
+                  type="password"
+                  placeholder="password"
                 />
               </FormControl>
 
@@ -140,9 +147,17 @@ export function LoginForm() {
         disabled={isLoading}
         onClick={async () => {
           setIsLoading(true)
-          await supabase.auth.signInWithOAuth({
-            provider: "github",
+          const { error } = await fetchAPI({
+            url: "/api/auth/login",
+            method: "POST",
+            data: {
+              provider: "github"
+            },
           })
+
+          if (!error) {
+            router.push("/")
+          }
         }}
       >
         {isLoading ? (

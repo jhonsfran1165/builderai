@@ -1,6 +1,6 @@
-import { createServerClient } from "@/lib/supabase/supabase-server"
-import { AppClaims } from "@/lib/types"
 import { MembersList } from "@/components/organizations/members"
+import { db } from "@/lib/db/server"
+import { AppClaims } from "@/lib/types"
 
 export default async function IndexPage({
   params: { orgSlug },
@@ -9,11 +9,10 @@ export default async function IndexPage({
     orgSlug: string
   }
 }) {
-  const supabase = createServerClient()
 
   const {
     data: { session },
-  } = await supabase.auth.getSession()
+  } = await db().auth.getSession()
 
   const appClaims = session?.user.app_metadata as AppClaims
   const orgClaims = appClaims?.organizations
@@ -27,7 +26,7 @@ export default async function IndexPage({
     }
   }
 
-  const { data: profiles, error } = await supabase
+  const { data: profiles, error } = await db
     .from("organization_profiles")
     .select("*, profile!inner(*)")
     .eq("org_id", orgId)

@@ -24,7 +24,7 @@ export const getOrgsFromClaims = ({
   currentOrgId: string
   currentOrgSet: boolean
 } => {
-  const orgClaims = appClaims.organizations
+  const orgClaims = appClaims?.organizations
   const allOrgIds: Array<string> = []
 
   let defaultOrgSlug = ""

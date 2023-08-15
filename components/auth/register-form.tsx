@@ -5,11 +5,12 @@ import { useRouter } from "next/navigation"
 import { useState } from "react"
 import { SubmitHandler, useForm } from "react-hook-form"
 
-import { useSupabase } from "@/components/auth/supabase-provider"
 import { Button } from "@/components/ui/button"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import { toast } from "@/components/ui/use-toast"
+import { db } from "@/lib/db/browser"
+import { fetchAPI } from "@/lib/utils"
 import {
   authRegisterValidationSchema,
   type authRegisterValidationType
@@ -20,12 +21,13 @@ import { Github, Loader2 } from "lucide-react"
 export function RegisterForm() {
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const router = useRouter()
-  const { supabase } = useSupabase()
 
   const form = useForm<authRegisterValidationType>({
     resolver: zodResolver(authRegisterValidationSchema),
     defaultValues: {
       email: "",
+      password: "",
+      confirmPassword: "",
     },
   })
 
@@ -36,16 +38,16 @@ export function RegisterForm() {
     try {
       setIsLoading(true)
 
-      const { error } = await supabase.auth.signUp({
-        email,
-        password,
-        // TODO: implement email verification or delete sign up with email
-        // options: {
-        //   emailRedirectTo: `${location.origin}/auth/callback`,
-        // },
+      const data = await fetchAPI({
+        url: "/api/auth/signup",
+        method: "POST",
+        data: {
+          email,
+          password,
+        },
       })
 
-      if (error) throw error
+      // if (error) throw error
 
       // TODO: implement onboarding flow
       router.push("/org?action=welcome")
@@ -105,7 +107,8 @@ export function RegisterForm() {
               <FormControl>
                 <Input
                   {...field}
-
+                  type="password"
+                  placeholder="password"
                 />
               </FormControl>
 
@@ -115,6 +118,7 @@ export function RegisterForm() {
         />
         <FormField
           control={form.control}
+
           name="confirmPassword"
           render={({ field }) => (
             <FormItem>
@@ -123,7 +127,8 @@ export function RegisterForm() {
               <FormControl>
                 <Input
                   {...field}
-
+                  type="password"
+                  placeholder="confirm password"
                 />
               </FormControl>
 
@@ -162,7 +167,7 @@ export function RegisterForm() {
         disabled={isLoading}
         onClick={async () => {
           setIsLoading(true)
-          await supabase.auth.signInWithOAuth({
+          await db().auth.signInWithOAuth({
             provider: "github",
           })
         }}

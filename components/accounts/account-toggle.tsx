@@ -1,6 +1,5 @@
 "use client"
 
-import { useSupabase } from "@/components/auth/supabase-provider"
 import { Avatar, AvatarImage } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
 import {
@@ -14,11 +13,13 @@ import {
   DropdownMenuTrigger
 } from "@/components/ui/dropdown-menu"
 import { useStore } from "@/lib/stores/layout"
+import { fetchAPI } from "@/lib/utils"
 import { CreditCard, LifeBuoy, LogOut, Plus, Settings, User, Users } from "lucide-react"
+import { useRouter } from "next/navigation"
 
 export function AccountToggle() {
-  const { supabase } = useSupabase()
   const { session } = useStore()
+  const router = useRouter()
   const user_metadata = session?.user.user_metadata
 
   return (
@@ -84,7 +85,14 @@ export function AccountToggle() {
         <DropdownMenuSeparator />
         <DropdownMenuItem
           onClick={async () => {
-            await supabase.auth.signOut()
+            const { error } = await fetchAPI({
+              url: "/api/auth/logout",
+              method: "POST"
+            })
+
+            if (!error) {
+              router.push("/")
+            }
           }}
         >
           <LogOut className="mr-2 h-4 w-4" />

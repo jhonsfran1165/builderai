@@ -5,7 +5,7 @@ import {
   withMethods,
   withValidation,
 } from "@/lib/api-middlewares"
-import { supabaseApiClient } from "@/lib/supabase/supabase-api"
+import { db } from "@/lib/db/api"
 import { Profile, Session } from "@/lib/types/supabase"
 import { orgMakeDefaultSchema } from "@/lib/validations/org"
 
@@ -16,17 +16,15 @@ async function handler(
   profile?: Profile
 ) {
   try {
-    const supabase = supabaseApiClient(req, res)
-
     if (req.method === "POST") {
       const { id, is_default } = req.body
 
-      const { error: updateDefault } = await supabase
+      const { error: updateDefault } = await db
         .from("organization_profiles")
         .update({ is_default: false })
         .eq("profile_id", session?.user.id)
 
-      const { data, error: newDefault } = await supabase
+      const { data, error: newDefault } = await db
         .from("organization_profiles")
         .update({ is_default: is_default })
         .eq("profile_id", session?.user.id)

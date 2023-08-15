@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation"
 
-import { createServerClient } from "@/lib/supabase/supabase-server"
+import { db } from "@/lib/db/server"
 
 
 export const revalidate = 0
@@ -15,9 +15,8 @@ export default async function DashboardLayout({
     projectSlug: string
   }
 }) {
-  const supabase = createServerClient()
 
-  const { data: project, error } = await supabase
+  const { data: project, error } = await db
     .from("project")
     .select("id")
     .eq("slug", projectSlug)
@@ -27,5 +26,5 @@ export default async function DashboardLayout({
     notFound()
   }
 
-  return children
+  return <>{children}</>
 }

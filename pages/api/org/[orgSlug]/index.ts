@@ -5,17 +5,15 @@ import {
   withMethods,
   withValidation,
 } from "@/lib/api-middlewares"
-import { supabaseApiClient } from "@/lib/supabase/supabase-api"
+import { db } from "@/lib/db/api"
 import { orgDeleteSchema, orgGetSchema } from "@/lib/validations/org"
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {
   try {
-    const supabase = supabaseApiClient(req, res)
-
     if (req.method === "DELETE") {
       const { orgSlug, id } = req.body
 
-      const { error } = await supabase
+      const { error } = await db
         .from("organization")
         .delete()
         .eq("id", id)

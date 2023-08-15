@@ -1,21 +1,21 @@
 import { NextFetchEvent, NextRequest, NextResponse } from "next/server"
-import { createMiddlewareSupabaseClient } from "@supabase/auth-helpers-nextjs"
 
 import { parse } from "@/lib/middleware/utils"
-import type { Database } from "@/lib/types/database.types"
+
+import { db as dbClient } from "../db/middleware"
 
 export default async function AppMiddleware(
   req: NextRequest,
   ev: NextFetchEvent
 ) {
-  const { path, domain, key } = parse(req)
+  const { path } = parse(req)
   const res = NextResponse.next()
   const url = req.nextUrl
-  const supabase = createMiddlewareSupabaseClient<Database>({ req, res })
+  const db = dbClient({ req, res })
 
   const {
     data: { session },
-  } = await supabase.auth.getSession()
+  } = await db.auth.getSession()
 
   // TODO: recording page hits
 

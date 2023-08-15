@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next"
 
-import { supabaseApiClient } from "@/lib/supabase/supabase-api"
+import { db } from "@/lib/db/api"
 import { Profile, Session } from "@/lib/types/supabase"
 
 interface WithAuthenticationNextApiHandler {
@@ -29,10 +29,9 @@ export default function withAuthentication(
       protectedMethods?.includes(req.method ?? "") ||
       protectedMethods === undefined
     ) {
-      const supabase = supabaseApiClient(req, res)
       const {
         data: { session },
-      } = await supabase.auth.getSession()
+      } = await db().auth.getSession()
 
       if (!session) {
         return res.status(401).json({
@@ -43,7 +42,7 @@ export default function withAuthentication(
       }
 
       if (needProfileDetails) {
-        const { data: profile, error } = await supabase
+        const { data: profile, error } = await db()
           .from("profile")
           .select("*")
           .eq("id", session.user.id)

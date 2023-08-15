@@ -5,7 +5,7 @@ import {
   withMethods,
   withValidation,
 } from "@/lib/api-middlewares"
-import { supabaseApiClient } from "@/lib/supabase/supabase-api"
+import { db } from "@/lib/db/api"
 import { Profile, Session } from "@/lib/types/supabase"
 import { orgBySlugGetSchema } from "@/lib/validations/org"
 
@@ -16,12 +16,10 @@ async function handler(
   profile?: Profile
 ) {
   try {
-    const supabase = supabaseApiClient(req, res)
-
     if (req.method === "GET") {
       const { orgSlug } = req.query
 
-      const { data } = await supabase
+      const { data } = await db
         .from("organization")
         .select("slug")
         .eq("slug", orgSlug)

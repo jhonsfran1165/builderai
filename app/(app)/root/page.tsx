@@ -1,17 +1,15 @@
 import { redirect } from "next/navigation"
 
-import { createServerClient } from "@/lib/supabase/supabase-server"
+import { db } from "@/lib/db/server"
 import { AppClaims } from "@/lib/types"
 import { getOrgsFromClaims } from "@/lib/utils"
 
 export const revalidate = 0
 
 export default async function RootPage() {
-  const supabase = createServerClient()
-
   const {
     data: { session },
-  } = await supabase.auth.getSession()
+  } = await db().auth.getSession()
 
   const appClaims = session?.user.app_metadata as AppClaims
   const { currentOrg, defaultOrgSlug } = getOrgsFromClaims({ appClaims })

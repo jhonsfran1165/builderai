@@ -1,10 +1,10 @@
 import { notFound } from "next/navigation"
 
-import { createServerClient } from "@/lib/supabase/supabase-server"
-import { AppClaims } from "@/lib/types"
 import { OrganizationDelete } from "@/components/organizations/organization-delete"
 import { OrganizationForm } from "@/components/organizations/organization-form"
 import { OrganizationMakeDefault } from "@/components/organizations/organization-make-default"
+import { db } from "@/lib/db/server"
+import { AppClaims } from "@/lib/types"
 
 export const revalidate = 0
 
@@ -15,16 +15,15 @@ export default async function OrgSettingsIndexPage({
     orgSlug: string
   }
 }) {
-  const supabase = createServerClient()
 
   const {
     data: { session },
-  } = await supabase.auth.getSession()
+  } = await db().auth.getSession()
 
   const appClaims = session?.user.app_metadata as AppClaims
   const orgClaims = appClaims?.organizations
 
-  const { data: organization, error } = await supabase
+  const { data: organization, error } = await db
     .from("organization")
     .select("*")
     .eq("slug", orgSlug)

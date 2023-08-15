@@ -5,7 +5,7 @@ import {
   withMethods,
   withValidation,
 } from "@/lib/api-middlewares"
-import { supabaseApiClient } from "@/lib/supabase/supabase-api"
+import { db } from "@/lib/db/api"
 import { Profile, Session } from "@/lib/types/supabase"
 import { orgChangeRoleSchema } from "@/lib/validations/org"
 
@@ -16,13 +16,11 @@ async function handler(
   profile?: Profile
 ) {
   try {
-    const supabase = supabaseApiClient(req, res)
-
     if (req.method === "POST") {
       const { id, role, profileId } = req.body
 
       // every organization has to have at least one owner
-      const { data: findRoles } = await supabase
+      const { data: findRoles } = await db
         .from("organization_profiles")
         .select("profile_id")
         .eq("org_id", id)
@@ -45,7 +43,7 @@ async function handler(
         })
       }
 
-      const { data, error } = await supabase
+      const { data, error } = await db
         .from("organization_profiles")
         .update({ role: role })
         .eq("profile_id", profileId)

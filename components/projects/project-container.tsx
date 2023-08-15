@@ -11,6 +11,7 @@ import NoProjectsPlaceholder from "@/components/projects/no-projects-placeholder
 export function ProjectsContainer({ projectsPromise }: { projectsPromise: Promise<DataProjectsView[]> }) {
   if (!projectsPromise) return null
 
+  // TODO: better to use react query here
   const projects = use(projectsPromise)
 
   return (
@@ -22,7 +23,7 @@ export function ProjectsContainer({ projectsPromise }: { projectsPromise: Promis
             <ProjectCard key={project.project_id} project={project} />
           ))}
       </ul>
-      {!projects && <NoProjectsPlaceholder />}
+      {projects.length === 0 && <NoProjectsPlaceholder />}
     </MaxWidthWrapper>
   )
 }

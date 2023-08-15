@@ -5,7 +5,7 @@ import {
   withMethods,
   withValidation,
 } from "@/lib/api-middlewares"
-import { supabaseApiClient } from "@/lib/supabase/supabase-api"
+import { db } from "@/lib/db/api"
 import { Profile, Session } from "@/lib/types/supabase"
 import { projectGetSchema, projectPostSchema } from "@/lib/validations/project"
 
@@ -16,15 +16,16 @@ async function handler(
   profile?: Profile
 ) {
   try {
-    const supabase = supabaseApiClient(req, res)
-
     if (req.method === "GET") {
-      const { orgSlug } = req.query
+      const { orgSlug, projectSlug } = req.query
 
-      const { data: dataProjects, error } = await supabase
+      // TODO: use orgId instead
+      const { data: dataProjects, error } = await db
         .from("data_projects")
         .select("*")
         .eq("org_slug", orgSlug)
+        .eq("project_slug", projectSlug)
+        .single()
 
       if (error) return res.status(404).json(error)
 
@@ -32,20 +33,17 @@ async function handler(
     }
 
     if (req.method === "POST") {
-      const { orgSlug } = req.query
-
-      const { data: projects, error } = await supabase
+      const { data, error } = await db
         .from("project")
-        .select("*, organization!inner(*)")
-        .eq("organization.slug", orgSlug)
+        .select("*")
+        .eq("id", req.body.projectSlug)
 
-      if (error) return res.status(404).json(error)
+      if (error) return res.status(404).json({ ...error })
 
-      return res.status(200).json(projects)
+      return res.status(200).json({ ...data })
     }
   } catch (error) {
-    console.error(error)
-    return res.status(500).json(error)
+    return res.status(500).json({ ...error })
   }
 }
 
