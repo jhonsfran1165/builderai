@@ -5,7 +5,7 @@ import {
   useRouter,
   useSelectedLayoutSegments
 } from "next/navigation";
-import { useEffect, useMemo, useRef } from "react";
+import { use, useEffect, useMemo, useRef } from "react";
 import { mutate } from "swr";
 
 import { toast } from "@/components/ui/use-toast";
@@ -16,18 +16,13 @@ import { useTrackPage } from "@/lib/hooks/use-track-page";
 import { useStore } from "@/lib/stores/layout";
 import useProject from "@/lib/swr/use-project";
 import { AppClaims, AppModulesNav } from "@/lib/types";
-import { Session } from "@/lib/types/supabase";
 
 // TODO: separation of concerns for this and clean
 // TODO: implement legend state
 function StoreHandler({
-  session,
   modulesApp,
-  appClaims,
 }: {
-  session: Session | null
   modulesApp: AppModulesNav
-  appClaims: AppClaims
 }) {
   const pathname = usePathname()
   const router = useRouter()
@@ -35,6 +30,8 @@ function StoreHandler({
   const startTimeRef = useRef(Date.now())
   const initialized = useRef(false)
   const database = db()
+  const { data: { session } } = use(database.auth.getSession())
+  const appClaims = session?.user.app_metadata as AppClaims
 
   const [page] = useTrackPage()
 
@@ -135,25 +132,12 @@ function StoreHandler({
     }
   }, [haveAccessProject, haveAccessOrg, orgSlug, projectSlug])
 
-  // initialize this only the first time from the server
-  // TODO: better change this with session?
+  // // initialize this only the first time from the server
+  // // TODO: better change this with session?
   if (!initialized.current) {
     useStore.setState({
       modulesApp,
-      session,
-      contextHeader: activeTab?.title,
-      orgSlug,
-      orgId,
-      projectSlug,
-      projectData,
-      activeTabs: tabs,
-      activeTab: activeTab,
-      activeSegment,
-      numberSegments,
-      activePathPrefix,
-      rootPathTab,
       moduleTab,
-      orgData,
       appClaims,
     })
     initialized.current = true
@@ -183,7 +167,6 @@ function StoreHandler({
       // TODO: it is possible to generalize this?
       orgSlug,
       orgId,
-      session,
       projectSlug,
       activeTabs: tabs,
       activeTab: activeTab,

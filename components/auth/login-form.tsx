@@ -147,16 +147,14 @@ export function LoginForm() {
         disabled={isLoading}
         onClick={async () => {
           setIsLoading(true)
-          const { error } = await fetchAPI({
-            url: "/api/auth/login",
+          const { data, error } = await fetchAPI({
+            url: "/api/auth/provider/github",
+            data: {},
             method: "POST",
-            data: {
-              provider: "github"
-            },
           })
 
           if (!error) {
-            router.push("/")
+            window.location.href = data?.url
           }
         }}
       >

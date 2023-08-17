@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from "next"
 
-import { db } from "@/lib/db/api"
-import { Profile, Session } from "@/lib/types/supabase"
+import { db } from "@/lib/db/server"
+import { Profile, Session } from "@/lib/types/db"
 
 interface WithAuthenticationNextApiHandler {
   (

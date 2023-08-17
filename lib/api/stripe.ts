@@ -1,7 +1,7 @@
 import Stripe from "stripe"
 import { v4 as uuidv4 } from "uuid"
 
-// we need to override RLS here, for that we use supabase admin
+// we need to override RLS here, for that we use db admin
 import { db } from "@/lib/db/admin"
 import { stripe } from "@/lib/stripe"
 import {
@@ -9,7 +9,7 @@ import {
   OrganizationSubscriptionStatus,
   OrganizationSubscriptions,
   SubscriptionTiers,
-} from "@/lib/types/supabase"
+} from "@/lib/types/db"
 import { toDateTime } from "@/lib/utils"
 
 const buildSubscriptionData = (
@@ -111,7 +111,7 @@ const onCheckoutCompleted = async ({
         stripe_id: stripeId,
       })
       .eq("id", orgId),
-    db().from("organization_subscriptions").insert(subscriptionData),
+    db.from("organization_subscriptions").insert(subscriptionData),
   ])
 
   console.log(result)

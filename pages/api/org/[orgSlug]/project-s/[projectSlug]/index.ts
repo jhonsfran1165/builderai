@@ -6,7 +6,7 @@ import {
   withValidation,
 } from "@/lib/api-middlewares"
 import { db } from "@/lib/db/api"
-import { Profile, Session } from "@/lib/types/supabase"
+import { Profile, Session } from "@/lib/types/db"
 import { projectGetSchema, projectPostSchema } from "@/lib/validations/project"
 
 async function handler(

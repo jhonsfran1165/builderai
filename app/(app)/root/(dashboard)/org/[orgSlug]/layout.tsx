@@ -3,6 +3,8 @@ import { notFound } from "next/navigation"
 import { db } from "@/lib/db/server"
 import { AppClaims } from "@/lib/types"
 
+import HeaderContext from "@/components/layout/header-context"
+
 export const revalidate = 0
 
 // validate claims and redirect to org if it exists
@@ -37,5 +39,10 @@ export default async function DashboardLayout({
     notFound()
   }
 
-  return <>{children}</>
+  return (
+    <>
+      <HeaderContext />
+      {children}
+    </>
+  )
 }

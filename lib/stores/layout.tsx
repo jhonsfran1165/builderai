@@ -4,13 +4,11 @@ import {
   AppClaims,
   AppModulesNav,
   AppOrgClaim,
-  DashboardNavItem,
+  DashboardNavItem
 } from "@/lib/types"
 import {
-  DataProjectsView,
-  OrganizationViewData,
-  Session,
-} from "@/lib/types/supabase"
+  DataProjectsView, Session
+} from "@/lib/types/db"
 
 export const useStore = create<{
   contextHeader: string

@@ -31,7 +31,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { toast } from "@/components/ui/use-toast"
 import { ORGANIZATION_ROLES } from "@/lib/config/layout"
 import { useStore } from "@/lib/stores/layout"
-import { OrganizationProfiles, Profile } from "@/lib/types/supabase"
+import { OrganizationProfiles, Profile } from "@/lib/types/db"
 import { fetchAPI } from "@/lib/utils"
 
 export type MembersListProps = OrganizationProfiles & {

@@ -3,7 +3,7 @@
 
 import { ProjectCard } from "@/components/projects/project-card"
 import MaxWidthWrapper from "@/components/shared/max-width-wrapper"
-import type { DataProjectsView } from "@/lib/types/supabase"
+import type { DataProjectsView } from "@/lib/types/db"
 import { use } from "react"
 
 import NoProjectsPlaceholder from "@/components/projects/no-projects-placeholder"

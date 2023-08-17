@@ -1,7 +1,7 @@
 import Link from "next/link"
 
-import { AppOrgClaim } from "@/lib/types"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { AppOrgClaim } from "@/lib/types"
 
 function OrganizationLink({ org }: { org?: AppOrgClaim | null }) {
   return (

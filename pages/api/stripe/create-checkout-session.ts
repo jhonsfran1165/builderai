@@ -8,7 +8,7 @@ import {
 } from "@/lib/api-middlewares"
 import { db } from "@/lib/db/api"
 import { stripe } from "@/lib/stripe"
-import { Profile, Session } from "@/lib/types/supabase"
+import { Profile, Session } from "@/lib/types/db"
 import { getAppRootUrl } from "@/lib/utils"
 import { stripePostSchema } from "@/lib/validations/stripe"
 

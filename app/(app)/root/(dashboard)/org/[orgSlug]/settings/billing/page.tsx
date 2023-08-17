@@ -27,7 +27,7 @@ export default async function IndexPage({
 
   // We use orgId just to ensure we filter the right projects but even if we don't
   // use it, there is RLS in the database that will check that for us
-  const { data: projects, error } = await db
+  const { data: projects, error } = await db()
     .from("data_projects")
     .select("*")
     .eq("org_slug", orgSlug)

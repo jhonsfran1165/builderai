@@ -39,7 +39,7 @@ import useOrganizationExist from "@/hooks/use-organization-exist"
 import { trackEvent } from "@/lib/analytics/track-event"
 import { ORGANIZATION_TYPES } from "@/lib/config/layout"
 import { db } from "@/lib/db/browser"
-import { Organization } from "@/lib/types/supabase"
+import { Organization } from "@/lib/types/db"
 import { createSlug, fetchAPI } from "@/lib/utils"
 import { orgPostSchema, orgPostType } from "@/lib/validations/org"
 
@@ -123,7 +123,7 @@ export function OrganizationForm({ org }: { org?: Organization }) {
         })
 
         if (action === "new") {
-          // refreshing supabase JWT
+          // refreshing JWT
           await refreshJWT(db())
 
           // Refresh the current route and fetch new data from the server without

@@ -6,7 +6,7 @@ import {
   withValidation,
 } from "@/lib/api-middlewares"
 import { db } from "@/lib/db/api"
-import { Profile, Session } from "@/lib/types/supabase"
+import { Profile, Session } from "@/lib/types/db"
 import { orgBySlugGetSchema } from "@/lib/validations/org"
 
 async function handler(
@@ -19,7 +19,7 @@ async function handler(
     if (req.method === "GET") {
       const { orgSlug } = req.query
 
-      const { data } = await db
+      const { data } = await db()
         .from("organization")
         .select("slug")
         .eq("slug", orgSlug)

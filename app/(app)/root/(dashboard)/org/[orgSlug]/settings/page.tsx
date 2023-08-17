@@ -23,7 +23,7 @@ export default async function OrgSettingsIndexPage({
   const appClaims = session?.user.app_metadata as AppClaims
   const orgClaims = appClaims?.organizations
 
-  const { data: organization, error } = await db
+  const { data: organization, error } = await db()
     .from("organization")
     .select("*")
     .eq("slug", orgSlug)

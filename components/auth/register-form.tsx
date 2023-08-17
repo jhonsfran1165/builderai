@@ -9,7 +9,6 @@ import { Button } from "@/components/ui/button"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import { toast } from "@/components/ui/use-toast"
-import { db } from "@/lib/db/browser"
 import { fetchAPI } from "@/lib/utils"
 import {
   authRegisterValidationSchema,
@@ -167,9 +166,16 @@ export function RegisterForm() {
         disabled={isLoading}
         onClick={async () => {
           setIsLoading(true)
-          await db().auth.signInWithOAuth({
-            provider: "github",
+          const { data, error } = await fetchAPI({
+            url: "/api/auth/provider/github",
+            data: {},
+            method: "POST",
           })
+
+          if (!error) {
+            window.location.href = data?.url
+          }
+
         }}
       >
         {isLoading ? (

@@ -1,10 +1,8 @@
-import type { Icon } from "lucide-react"
-
 import type {
   OrganizationRoles,
   OrganizationTypes,
   SubscriptionTiers,
-} from "@/lib/types/supabase"
+} from "@/lib/types/db"
 import { Icons } from "@/components/icons"
 
 export type AppModulesNav = {
@@ -74,6 +72,7 @@ export type DashboardSidebarNavItem = {
 
 export type DashboardNavItem = {
   title: string
+  titleTab?: string
   module: string
   submodule?: string
   slug: string
@@ -82,6 +81,8 @@ export type DashboardNavItem = {
   sidebarNav?: DashboardSidebarNavItem[]
   disabled?: boolean
   external?: boolean
+  headerDisabled?: boolean
+  tabsDisabled?: boolean
 }
 
 export type PriceSubscription = {

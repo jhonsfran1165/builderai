@@ -8,7 +8,7 @@ import {
 } from "@/lib/api-middlewares"
 import { db as adminDB } from "@/lib/db/admin"
 import { db } from "@/lib/db/api"
-import { Session } from "@/lib/types/supabase"
+import { Session } from "@/lib/types/db"
 import { orgPostSchema, orgPutSchema } from "@/lib/validations/org"
 
 async function handler(
@@ -20,7 +20,7 @@ async function handler(
     if (req.method === "PUT") {
       const { id, type, name, image, description } = req.body
 
-      const { data: org, error } = await db
+      const { data: org, error } = await db()
         .from("organization")
         .update({
           type,
@@ -41,7 +41,7 @@ async function handler(
       const { slug, type, name, image, description } = req.body
       const uuid = uuidv4()
 
-      // we use here admin supabase to bypass all RLS
+      // we use here admin db to bypass all RLS
       const { error } = await adminDB.rpc("config_org", {
         user_id: session?.user.id ?? "",
         org_id: uuid,

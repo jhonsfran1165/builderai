@@ -20,7 +20,7 @@ import {
   DropdownMenuTrigger
 } from "@/components/ui/dropdown-menu"
 import { Separator } from "@/components/ui/separator"
-import { DataProjectsView } from "@/lib/types/supabase"
+import { DataProjectsView } from "@/lib/types/db"
 import { getDateTimeLocal, getFirstAndLastDay } from "@/lib/utils"
 
 export function BillingProjects({

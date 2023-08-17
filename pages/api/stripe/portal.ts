@@ -5,9 +5,9 @@ import {
   withMethods,
   withValidation,
 } from "@/lib/api-middlewares"
-import { supabaseApiClient } from "@/lib/db/supabase-api"
+import { db } from "@/lib/db/server"
 import { stripe } from "@/lib/stripe"
-import { Organization, Profile, Session } from "@/lib/types/supabase"
+import { Profile, Session } from "@/lib/types/db"
 import { getAppRootUrl } from "@/lib/utils"
 import { stripePortalPostSchema } from "@/lib/validations/stripe"
 
@@ -18,22 +18,22 @@ async function handler(
   profile?: Profile
 ) {
   try {
-    const supabase = supabaseApiClient(req, res)
+    const database = db()
 
     if (req.method === "POST") {
       const { orgSlug } = req.body
 
-      const { data: orgsProfile, error } = await supabase
+      const { data: orgsProfile, error } = await database
         .from("organization_profiles")
         .select("*, organization!inner(*)")
         .eq("profile_id", session?.user.id)
         .eq("organization.slug", orgSlug)
         .single()
 
-      const org = orgsProfile?.organization as Organization
+      const org = orgsProfile?.organization[0]
 
       const { url } = await stripe.billingPortal.sessions.create({
-        customer: org.stripe_id || "",
+        customer: org?.stripe_id || "",
         return_url: `${getAppRootUrl()}/org/${orgSlug}/settings/billing`,
       })
 

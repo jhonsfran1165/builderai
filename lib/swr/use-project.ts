@@ -1,7 +1,6 @@
 import useSWR from "swr"
 
-import { useStore } from "@/lib/stores/layout"
-import { DataProjectsView } from "@/lib/types/supabase"
+import { DataProjectsView } from "@/lib/types/db"
 import { fetcher } from "@/lib/utils"
 
 export default function useProject({

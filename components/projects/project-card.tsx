@@ -19,7 +19,7 @@ import {
   DropdownMenuTrigger
 } from "@/components/ui/dropdown-menu"
 import { Separator } from "@/components/ui/separator"
-import type { DataProjectsView } from "@/lib/types/supabase"
+import type { DataProjectsView } from "@/lib/types/db"
 import { timeAgo } from "@/lib/utils"
 
 // TODO: create fully test stripe process with https://docs.webhookthing.com/

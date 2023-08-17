@@ -1,6 +1,6 @@
 import type { Database } from "./database.types"
 
-export type { User, Session } from "@supabase/supabase-js"
+export type { Session, User } from "@supabase/supabase-js"
 
 export type Organization = Database["public"]["Tables"]["organization"]["Row"]
 export type OrganizationSubscriptionStatus =
@@ -32,3 +32,11 @@ export type DataProjectsView =
 export type OrganizationViewData = DataOrgsView & {
   organization: Organization
 }
+
+// TODO: create this as  https://github.com/dijonmusters/nextjs-auth-helpers-videos/blob/main/app/global.d.ts
+// import type { Database as DB } from "@/lib/database.types"
+
+// declare global {
+//   type Database = DB;
+//   type Todo = DB["public"]["Tables"]["todos"]["Row"];
+// }

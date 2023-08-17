@@ -6,7 +6,7 @@ import {
   withValidation,
 } from "@/lib/api-middlewares"
 import { db } from "@/lib/db/api"
-import { Profile, Session } from "@/lib/types/supabase"
+import { Profile, Session } from "@/lib/types/db"
 import { orgChangeRoleSchema } from "@/lib/validations/org"
 
 async function handler(

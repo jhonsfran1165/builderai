@@ -52,7 +52,7 @@ export function OrganizationDelete({
       })
 
       if (org.slug) {
-        // refreshing supabase JWT
+        // refreshing JWT
         await refreshJWT(db())
         router.push("/")
       }
