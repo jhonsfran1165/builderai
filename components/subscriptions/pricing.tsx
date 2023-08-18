@@ -13,7 +13,7 @@ import {
   TooltipTrigger
 } from "@/components/ui/tooltip"
 import { toast } from "@/components/ui/use-toast"
-import { pricingSubscriptions } from "@/lib/config/subscriptions"
+import { SUBSCRIPTIONS } from "@/lib/config/subscriptions"
 import { useStore } from "@/lib/stores/layout"
 import { getStripe } from "@/lib/stripe/client"
 import { PriceSubscription } from "@/lib/types"
@@ -109,7 +109,7 @@ const Pricing = ({ type = "public" }: { type: string }) => {
       </div>
 
       <div className="grid grid-cols-1 gap-10 lg:grid-cols-3">
-        {pricingSubscriptions.map(
+        {SUBSCRIPTIONS.map(
           ({
             plan,
             tagline,

@@ -2,17 +2,17 @@
 
 import { useMemo } from "react"
 
-import { pricingSubscriptions } from "@/lib/config/subscriptions"
-import { useStore } from "@/lib/stores/layout"
-import { getDateTimeLocal, getFirstAndLastDay } from "@/lib/utils"
+import SubscriptionPlansDescription from "@/components/subscriptions/plan-description"
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import SubscriptionPlansDescription from "@/components/subscriptions/plan-description"
+import { SUBSCRIPTIONS } from "@/lib/config/subscriptions"
+import { useStore } from "@/lib/stores/layout"
+import { getDateTimeLocal, getFirstAndLastDay } from "@/lib/utils"
 
 export default function SubscriptionPlans() {
   const { projectData } = useStore()
 
-  const currentPlan = pricingSubscriptions.find(
+  const currentPlan = SUBSCRIPTIONS.find(
     (plan) => plan.plan === projectData?.tier
   )
 
@@ -79,7 +79,7 @@ export default function SubscriptionPlans() {
             These are the new plans you can pick to upgrade subscriptions
           </div>
           <div className="flex w-1/2 flex-col items-center justify-end px-6 pb-6">
-            {pricingSubscriptions
+            {SUBSCRIPTIONS
               .filter((plan) => plan.plan !== projectData?.tier)
               .map((plan) => {
                 return (

@@ -1,0 +1,41 @@
+{
+  "version": "5",
+  "dialect": "pg",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "5",
+      "when": 1692365144942,
+      "tag": "0000_magical_blue_blade",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1692367310697,
+      "tag": "0001_milky_major_mapleleaf",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1692367335830,
+      "tag": "0002_dizzy_praxagora",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "5",
+      "when": 1692367354275,
+      "tag": "0003_soft_talisman",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "5",
+      "when": 1692369283853,
+      "tag": "0004_tiresome_meggan",
+      "breakpoints": true
+    }
+  ]
+}

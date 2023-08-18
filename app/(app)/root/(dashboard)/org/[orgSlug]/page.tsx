@@ -5,6 +5,7 @@ import { cookies } from "next/headers";
 import { Suspense } from "react";
 import { ErrorBoundary } from "react-error-boundary";
 
+
 export default async function OrgIndexPage({ params: { orgSlug } }: {
   params: {
     orgSlug: string

@@ -1,7 +1,7 @@
 import { SubscriptionPlan } from "@/lib/types"
 
 // TODO: set stripe prices
-export const pricingSubscriptions: SubscriptionPlan[] = [
+export const SUBSCRIPTIONS: SubscriptionPlan[] = [
   {
     plan: "FREE",
     tagline: "For startups & side projects",
