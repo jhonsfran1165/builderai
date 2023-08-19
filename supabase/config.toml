@@ -57,6 +57,7 @@ enable_signup = true
 double_confirm_changes = false
 # If enabled, users need to confirm their email address before signing in.
 enable_confirmations = false
+email_confirmations = false
 
 # Use an external OAuth provider. The full list of providers are: `apple`, `azure`, `bitbucket`,
 # `discord`, `facebook`, `github`, `gitlab`, `google`, `twitch`, `twitter`, `slack`, `spotify`.

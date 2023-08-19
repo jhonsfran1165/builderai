@@ -70,5 +70,5 @@ export const organizationSubscriptions = pgTable("organization_subscriptions", {
     .references(() => projects.id, {
       onDelete: "cascade",
     }),
-  stripeSubscriptionId: text("stripe_subscription_id"),
+  stripeSubscriptionId: text("stripe_subscription_id").unique(),
 })

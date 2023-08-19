@@ -6,5 +6,6 @@ import type { Database } from "@/lib/types/database.types"
 // as it has admin privileges and overwrites RLS policies!
 export const db = createClient<Database>(
   process.env.NEXT_PUBLIC_SUPABASE_URL || "",
-  process.env.SUPABASE_SERVICE_ROLE_KEY || ""
+  process.env.SUPABASE_SERVICE_ROLE_KEY || "",
+  { auth: { persistSession: false } }
 )

@@ -13,7 +13,7 @@ export const organizations = pgTable(
     image: varchar("image"),
     type: organizationType("type"),
     description: text("description"),
-    stripeId: text("stripe_id"),
+    stripeId: text("stripe_id").unique(),
   },
   (table) => {
     return {
