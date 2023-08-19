@@ -22,7 +22,7 @@ export const TabsNav = () => {
           {tabs.length > 0 ?
             tabs.map((tab, index) => (
               <Tab
-                key={tab.slug + index}
+                key={tab.slug + index + tab.title}
                 tab={tab}
                 pathPrefix={activePathPrefix}
                 activeTab={activeTab}

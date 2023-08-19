@@ -4,7 +4,7 @@ import { boolean, pgTable, uuid } from "drizzle-orm/pg-core"
 import { organizationRoles } from "./enums"
 import { organizations } from "./organizations"
 import { profiles } from "./profiles"
-import { commonColumns } from "./utils"
+import { commonColumns } from "./shared"
 
 export const organization_profiles = pgTable("organization_profiles", {
   ...commonColumns,

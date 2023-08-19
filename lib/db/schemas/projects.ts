@@ -2,7 +2,7 @@ import { pgTable, text, uniqueIndex, uuid } from "drizzle-orm/pg-core"
 
 import { organizations } from "./organizations"
 // TODO: use path alias
-import { commonColumns } from "./utils"
+import { commonColumns } from "./shared"
 
 export const projects = pgTable(
   "projects",

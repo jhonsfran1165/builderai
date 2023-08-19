@@ -6,6 +6,7 @@ import { authTxn } from "@/lib/db"
 import { organization_profiles } from "@/lib/db/schemas/organization_profiles"
 import { db } from "@/lib/db/server"
 // import { cookies } from 'next/headers'
+import { api } from "lib/trpc/server"
 
 export default async function AppInitialPage({
   searchParams: { action },
@@ -15,7 +16,7 @@ export default async function AppInitialPage({
   }
 }) {
 
-
+  console.log(await api.userById.query(1))
   // const cookieStore = cookies()
   // const supabaseJWT = cookieStore.get("sb-localhost-auth-token")
   // console.log(JSON.parse(supabaseJWT?.value || "{}")[0])

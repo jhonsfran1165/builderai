@@ -17,7 +17,7 @@ import {
 import { organizations } from "./organizations"
 import { projects } from "./projects"
 // TODO: use path alias
-import { commonColumns } from "./utils"
+import { commonColumns } from "./shared"
 
 export const organizationSubscriptions = pgTable("organization_subscriptions", {
   ...commonColumns,
