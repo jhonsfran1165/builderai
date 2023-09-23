@@ -1,8 +1,9 @@
 import { NextRequest } from "next/server"
 import { initTRPC } from "@trpc/server"
-import { eq } from "drizzle-orm"
 import superjson from "superjson"
 import { ZodError, z } from "zod"
+
+import { eq } from "@/lib/db"
 
 import { authTxn } from "../db"
 import { projects } from "../db/schemas/projects"
@@ -70,6 +71,10 @@ export const appRouter = t.router({
         txn.select().from(projects).where(eq(projects.slug, slug))
       )
     }),
+  projects: t.procedure.query(async (opts) => {
+    const db = opts.ctx.db
+    return await db((txn) => txn.select().from(projects))
+  }),
 })
 
 export type AppRouter = typeof appRouter

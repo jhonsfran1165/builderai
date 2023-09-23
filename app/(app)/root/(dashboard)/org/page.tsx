@@ -16,7 +16,7 @@ export default async function AppInitialPage({
   }
 }) {
 
-  console.log(await api.userById.query(1))
+  console.log(await api.userById.query({ slug: "ssss" }))
   // const cookieStore = cookies()
   // const supabaseJWT = cookieStore.get("sb-localhost-auth-token")
   // console.log(JSON.parse(supabaseJWT?.value || "{}")[0])
@@ -30,8 +30,6 @@ export default async function AppInitialPage({
       return tx.select().from(organization_profiles)
     })
 
-    console.log("data")
-    console.log(data)
   }
 
   if (action === "pricing") {

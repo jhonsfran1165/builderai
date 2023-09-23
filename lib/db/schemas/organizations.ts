@@ -1,4 +1,5 @@
 import { pgTable, text, uniqueIndex, varchar } from "drizzle-orm/pg-core"
+import { createSelectSchema } from "drizzle-zod"
 
 // TODO: use path alias
 import { organizationType } from "./enums"
@@ -21,3 +22,14 @@ export const organizations = pgTable(
     }
   }
 )
+
+// add plan to organization
+export const selectOrganizationSchema = createSelectSchema(
+  organizations
+).extend({
+  // plan: z
+  //   .enum(plan)
+  //   .nullable()
+  //   .default("free")
+  //   .transform((val) => val ?? "free"),
+})

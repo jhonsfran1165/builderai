@@ -1,7 +1,6 @@
 import { NextResponse, type NextRequest } from "next/server"
-import { eq } from "drizzle-orm"
 
-import { authTxn } from "@/lib/db"
+import { authTxn, eq } from "@/lib/db"
 import { organizations } from "@/lib/db/schemas/organizations"
 
 // GET responses are cached by default

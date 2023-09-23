@@ -30,6 +30,9 @@ pnpm supabase-to-zod --input ib/types/database.types.ts --output schemas.ts
 
 pg_dump --column-inserts --data-only postgresql://postgres:postgres@localhost:54322 > supabase/dump.sql
 
+pg_dump postgresql://postgres:postgres@localhost:54322 > supabase/dump.sql
+
+psql -h localhost -U postgres -d postgres < supabase/dump.sql
 ---
 
 colors: https://convertacolor.com/

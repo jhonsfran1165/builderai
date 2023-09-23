@@ -6,7 +6,7 @@ import { organizations } from "./organizations"
 import { profiles } from "./profiles"
 import { commonColumns } from "./shared"
 
-export const organization_profiles = pgTable("organization_profiles", {
+export const organizationProfiles = pgTable("organization_profiles", {
   ...commonColumns,
   role: organizationRoles("role").notNull(),
   orgId: uuid("org_id")

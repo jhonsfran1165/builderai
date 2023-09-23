@@ -12,10 +12,11 @@ import { api } from "@/lib/trpc/client"
 export function ProjectsContainer({ projectsPromise }: { projectsPromise: Promise<DataProjectsView[]> }) {
   if (!projectsPromise) return null
 
+  const trpc = use(api.projects.query())
+  console.log(trpc)
+
   // TODO: better to use react query here
   const projects = use(projectsPromise)
-  const trpc = use(api.userById.query({ slug: "eqwewqe" }))
-  console.log(trpc)
 
   return (
     <MaxWidthWrapper className="pt-10">

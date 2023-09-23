@@ -26,6 +26,7 @@
   },
   "dependencies": {
     "@chronark/zod-bird": "^0.1.1",
+    "@clerk/nextjs": "^4.23.2",
     "@hookform/resolvers": "^2.9.10",
     "@radix-ui/react-accessible-icon": "^1.0.1",
     "@radix-ui/react-accordion": "^1.1.0",
@@ -58,6 +59,7 @@
     "@stripe/stripe-js": "^1.52.1",
     "@supabase/auth-helpers-nextjs": "0.7.4",
     "@supabase/supabase-js": "^2.32.0",
+    "@t3-oss/env-core": "^0.6.1",
     "@tailwindcss/typography": "^0.5.9",
     "@tanstack/react-query": "^4.33.0",
     "@trpc/client": "^10.37.1",
@@ -84,6 +86,7 @@
     "next": "13.4.9",
     "next-themes": "^0.2.1",
     "postgres": "^3.3.5",
+    "random-word-slugs": "^0.1.7",
     "react": "^18.2.0",
     "react-day-picker": "^8.7.1",
     "react-dom": "^18.2.0",

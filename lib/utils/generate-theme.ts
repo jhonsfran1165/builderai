@@ -1,3 +1,4 @@
+// @ts-ignore
 import { toRadixVar } from "windy-radix-palette/vars"
 
 const themeNames = {
@@ -23,7 +24,7 @@ const themeNames = {
   },
 }
 
-const generateVariantRadixColors = (color) => {
+const generateVariantRadixColors = (color: string) => {
   return {
     DEFAULT: toRadixVar(color, 9),
     foreground: toRadixVar(color, 12),
