@@ -22,12 +22,12 @@
   },
   "dependencies": {
     "@react-email/button": "^0.0.14",
-    "@react-email/components": "^0.0.15",
+    "@react-email/components": "^0.0.16",
     "@react-email/head": "^0.0.7",
     "@react-email/html": "^0.0.7",
-    "@react-email/tailwind": "^0.0.14",
-    "@t3-oss/env-nextjs": "0.9.1",
-    "react-email": "^2.1.0",
+    "@react-email/tailwind": "^0.0.15",
+    "@t3-oss/env-nextjs": "0.9.2",
+    "react-email": "^2.1.1",
     "resend": "^3.2.0",
     "zod": "^3.22.4"
   },
@@ -35,12 +35,12 @@
     "@builderai/eslint-config": "^0.2.0",
     "@builderai/prettier-config": "^0.1.0",
     "@builderai/tsconfig": "^0.1.0",
-    "@types/node": "20.11.24",
-    "@types/react": "^18.2.61",
+    "@types/node": "20.11.30",
+    "@types/react": "^18.2.73",
     "eslint": "^8.57.0",
     "prettier": "^3.2.5",
     "react": "18.2.0",
-    "typescript": "^5.3.3"
+    "typescript": "^5.4.3"
   },
   "eslintConfig": {
     "extends": [
