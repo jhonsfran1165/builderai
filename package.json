@@ -2,7 +2,7 @@
   "name": "builderai",
   "private": true,
   "engines": {
-    "node": "20.11.1"
+    "node": "20.12.0"
   },
   "workspaces": [
     "packages/*",
@@ -10,7 +10,7 @@
     "tooling/*"
   ],
   "engineStrict": true,
-  "packageManager": "pnpm@8.15.4",
+  "packageManager": "pnpm@8.15.5",
   "scripts": {
     "build": "turbo build",
     "clean": "git clean -xdf node_modules dist .next",
@@ -26,12 +26,12 @@
   },
   "dependencies": {
     "@builderai/prettier-config": "^0.1.0",
-    "@manypkg/cli": "^0.21.2",
-    "@turbo/gen": "^1.12.4",
+    "@manypkg/cli": "^0.21.3",
+    "@turbo/gen": "^1.13.0",
     "cross-env": "^7.0.3",
     "prettier": "^3.2.5",
-    "turbo": "^1.12.4",
-    "typescript": "^5.3.3"
+    "turbo": "^1.13.0",
+    "typescript": "^5.4.3"
   },
   "prettier": "@builderai/prettier-config"
 }
