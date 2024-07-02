@@ -9,8 +9,8 @@
   "license": "AGPL-3.0",
   "devDependencies": {
     "@builderai/tsconfig": "workspace:*",
-    "@types/node": "20.11.24",
-    "typescript": "^5.3.3"
+    "@types/node": "20.14.9",
+    "typescript": "^5.5.3"
   },
   "dependencies": {
     "zod": "^3.23.8"

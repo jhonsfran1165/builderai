@@ -2,11 +2,11 @@
   "name": "builderai",
   "private": true,
   "engines": {
-    "node": "20.11.1"
+    "node": "20.15.0"
   },
   "workspaces": ["packages/*", "apps/*", "tooling/*", "internal/*"],
   "engineStrict": true,
-  "packageManager": "pnpm@8.15.4",
+  "packageManager": "pnpm@8.15.8",
   "scripts": {
     "build": "turbo build",
     "clean": "git clean -xdf node_modules dist .next",
@@ -22,13 +22,13 @@
     "manypkg:fix": "pnpm manypkg fix"
   },
   "dependencies": {
-    "@biomejs/biome": "1.7.3",
-    "@manypkg/cli": "^0.21.2",
-    "@turbo/gen": "^1.12.4",
+    "@biomejs/biome": "1.8.3",
+    "@manypkg/cli": "^0.21.4",
+    "@turbo/gen": "^1.13.4",
     "cross-env": "^7.0.3",
-    "knip": "^5.17.4",
-    "turbo": "^1.12.4",
-    "typescript": "^5.3.3"
+    "knip": "^5.23.3",
+    "turbo": "^1.13.4",
+    "typescript": "^5.5.3"
   },
 
   "git": {
