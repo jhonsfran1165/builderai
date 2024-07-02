@@ -12,8 +12,8 @@
   "license": "AGPL-3.0",
   "devDependencies": {
     "@builderai/tsconfig": "0.1.0",
-    "@types/node": "20.11.24",
-    "typescript": "^5.3.3"
+    "@types/node": "20.14.9",
+    "typescript": "^5.5.3"
   },
   "dependencies": {
     "@builderai/metrics": "workspace:^",

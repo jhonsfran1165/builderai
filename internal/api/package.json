@@ -35,12 +35,12 @@
     "@builderai/unprice": "^0.1.0",
     "@dinero.js/currencies": "2.0.0-alpha.14",
     "@potatohd/trpc-openapi": "^1.2.3",
-    "@t3-oss/env-nextjs": "0.9.1",
-    "@trpc/next": "11.0.0-rc.421",
-    "@trpc/server": "11.0.0-rc.421",
+    "@t3-oss/env-nextjs": "0.10.1",
+    "@trpc/next": "11.0.0-rc.433",
+    "@trpc/server": "11.0.0-rc.433",
     "@unkey/cache": "^1.0.2",
-    "@upstash/ratelimit": "^1.0.1",
-    "@upstash/redis": "^1.31.3",
+    "@upstash/ratelimit": "^1.2.1",
+    "@upstash/redis": "^1.31.6",
     "@vercel/functions": "^1.0.2",
     "dinero.js": "2.0.0-alpha.14",
     "server-only": "^0.0.1",
@@ -50,6 +50,6 @@
   },
   "devDependencies": {
     "@builderai/tsconfig": "^0.1.0",
-    "typescript": "^5.3.3"
+    "typescript": "^5.5.3"
   }
 }
