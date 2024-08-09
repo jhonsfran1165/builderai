@@ -18,10 +18,10 @@
   "author": "Andreas Thomas",
   "license": "AGPL-3.0",
   "devDependencies": {
-    "@types/node": "20.11.24",
-    "tsup": "^8.0.2",
-    "tsx": "^4.7.2",
-    "typescript": "^5.3.3"
+    "@types/node": "20.14.14",
+    "tsup": "^8.2.4",
+    "tsx": "^4.17.0",
+    "typescript": "^5.5.4"
   },
   "dependencies": {
     "zod": "^3.23.8"
