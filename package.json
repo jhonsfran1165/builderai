@@ -2,11 +2,11 @@
   "name": "unprice",
   "private": true,
   "engines": {
-    "node": "20.11.1"
+    "node": "20.16.0"
   },
   "workspaces": ["apps/*", "packages/*"],
   "engineStrict": true,
-  "packageManager": "pnpm@8.15.4",
+  "packageManager": "pnpm@8.15.9",
   "scripts": {
     "build": "turbo build",
     "clean": "git clean -xdf node_modules dist .next",
@@ -24,18 +24,18 @@
     "prepare": "husky"
   },
   "dependencies": {
-    "@biomejs/biome": "1.7.3",
+    "@biomejs/biome": "1.8.3",
     "@changesets/cli": "^2.27.7",
-    "@manypkg/cli": "^0.21.2",
-    "@turbo/gen": "^1.12.4",
-    "@types/node": "20.11.24",
+    "@manypkg/cli": "^0.21.4",
+    "@turbo/gen": "^1.13.4",
+    "@types/node": "20.14.14",
     "cross-env": "^7.0.3",
     "cz-conventional-changelog": "^3.3.0",
-    "husky": "^9.1.1",
-    "knip": "^5.17.4",
-    "lint-staged": "^15.2.2",
-    "turbo": "^2.0.6",
-    "typescript": "^5.3.3"
+    "husky": "^9.1.4",
+    "knip": "^5.27.2",
+    "lint-staged": "^15.2.8",
+    "turbo": "^2.0.12",
+    "typescript": "^5.5.4"
   },
   "git": {
     "pre-commit": "lint-staged"
